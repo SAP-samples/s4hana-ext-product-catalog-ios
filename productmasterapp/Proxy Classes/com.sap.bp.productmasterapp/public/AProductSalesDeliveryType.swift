@@ -1,4 +1,4 @@
-// # Proxy Compiler 18.9.4-973a4d-20181128
+// # Proxy Compiler 19.9.0-197466-20190927
 
 import Foundation
 import SAPOData
@@ -52,6 +52,8 @@ open class AProductSalesDeliveryType: EntityValue {
 
     private static var minimumMakeToOrderOrderQty_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesDeliveryType.property(withName: "MinimumMakeToOrderOrderQty")
 
+    private static var toSalesTax_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesDeliveryType.property(withName: "to_SalesTax")
+
     private static var toSalesText_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesDeliveryType.property(withName: "to_SalesText")
 
     public init(withDefaults: Bool = true) {
@@ -84,8 +86,8 @@ open class AProductSalesDeliveryType: EntityValue {
         }
     }
 
-    open class func array(from: EntityValueList) -> Array<AProductSalesDeliveryType> {
-        return ArrayConverter.convert(from.toArray(), Array<AProductSalesDeliveryType>())
+    open class func array(from: EntityValueList) -> [AProductSalesDeliveryType] {
+        return ArrayConverter.convert(from.toArray(), [AProductSalesDeliveryType]())
     }
 
     open func copy() -> AProductSalesDeliveryType {
@@ -650,6 +652,23 @@ open class AProductSalesDeliveryType: EntityValue {
         }
     }
 
+    open class var toSalesTax: Property {
+        get {
+            objc_sync_enter(AProductSalesDeliveryType.self)
+            defer { objc_sync_exit(AProductSalesDeliveryType.self) }
+            do {
+                return AProductSalesDeliveryType.toSalesTax_
+            }
+        }
+        set(value) {
+            objc_sync_enter(AProductSalesDeliveryType.self)
+            defer { objc_sync_exit(AProductSalesDeliveryType.self) }
+            do {
+                AProductSalesDeliveryType.toSalesTax_ = value
+            }
+        }
+    }
+    
     open class var toSalesText: Property {
         get {
             objc_sync_enter(AProductSalesDeliveryType.self)

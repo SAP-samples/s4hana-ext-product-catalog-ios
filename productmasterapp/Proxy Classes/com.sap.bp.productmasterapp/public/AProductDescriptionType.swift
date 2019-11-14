@@ -1,4 +1,4 @@
-// # Proxy Compiler 18.9.4-973a4d-20181128
+// # Proxy Compiler 19.9.0-197466-20190927
 
 import Foundation
 import SAPOData
@@ -7,7 +7,7 @@ open class AProductDescriptionType: EntityValue {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
     }
-    
+
     private static var product_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductDescriptionType.property(withName: "Product")
 
     private static var language_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductDescriptionType.property(withName: "Language")
@@ -18,8 +18,8 @@ open class AProductDescriptionType: EntityValue {
         super.init(withDefaults: withDefaults, type: APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductDescriptionType)
     }
 
-    open class func array(from: EntityValueList) -> Array<AProductDescriptionType> {
-        return ArrayConverter.convert(from.toArray(), Array<AProductDescriptionType>())
+    open class func array(from: EntityValueList) -> [AProductDescriptionType] {
+        return ArrayConverter.convert(from.toArray(), [AProductDescriptionType]())
     }
 
     open func copy() -> AProductDescriptionType {

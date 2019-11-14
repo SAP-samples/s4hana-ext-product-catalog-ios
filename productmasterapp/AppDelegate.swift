@@ -5,31 +5,69 @@ import SAPCommon
 import SAPOData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, OnboardingManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, ConnectivityObserver {
     
     // MARK: - Properties
     
     var window: UIWindow?
-    var apiproductsrvEntities: APIPRODUCTSRVEntities<OnlineODataProvider>!
     
-    private let getHostUrl = ServiceConfiguration.getHostUrl()
-    private let scpAppId = ServiceConfiguration.getScpAppId()
+    /// Logger instance initialization
+    private let logger = Logger.shared(named: "AppDelegateLogger")
+    private var flowProvider = OnboardingFlowProvider()
+    
+    /// Delegate implementation of the application in a custom class
+    var onboardingErrorHandler: OnboardingErrorHandler?
+    
+    /// Application controller instance for the application
+    var sessionManager: OnboardingSessionManager<ApplicationOnboardingSession>!
     
     // MARK: - Lifecycles
     
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        // Set a FUIInfoViewController as the rootViewController, since there it is not set in the Main.storyboard
+        // Set a FUIInfoViewController as the rootViewController, since there it is none set in the Main.storyboard
+        // Also, hide potentially sensitive data of the real application screen during onboarding
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.rootViewController = FUIInfoViewController.createSplashScreenInstanceFromStoryboard()
+        
+        
+        self.initializeOnboarding()
+        ConnectivityReceiver.registerObserver(self)
+        
         UINavigationBar.applyFioriStyle()
-        OnboardingManager.shared.delegate = self
-        OnboardingManager.shared.onboardOrRestore()
+        
         return true
     }
     
-    /// To only support portrait orientation during onboarding
+    func applicationDidEnterBackground(_: UIApplication) {
+        // Hides the application UI by presenting a splash screen, @see: ApplicationUIManager.hideApplicationScreen
+        OnboardingSessionManager.shared.lock { _ in }
+    }
+    
+    func applicationWillEnterForeground(_: UIApplication) {
+        // Triggers to show the passcode screen
+        OnboardingSessionManager.shared.unlock { error in
+            guard let error = error else {
+                return
+            }
+            
+            self.onboardingErrorHandler?.handleUnlockingError(error)
+        }
+    }
+    
+    // MARK: - UISplitViewControllerDelegate
+    
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
+        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
+        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
+        
+        if !topAsDetailController.isBeingPresented {
+            return true
+        }
+        return false
+    }
+    
     func application(_: UIApplication, supportedInterfaceOrientationsFor _: UIWindow?) -> UIInterfaceOrientationMask {
+        // Onboarding is only supported in portrait orientation
         switch OnboardingFlowController.presentationState {
         case .onboarding, .restoring:
             return .portrait
@@ -37,64 +75,79 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             return .allButUpsideDown
         }
     }
-    
-    // MARK: - Onboarding
-    
-//    func onboarded(onboardingContext: OnboardingContext) {
-//        //self.configureOData(onboardingContext.sapURLSession, onboardingContext.authenticationURL!)
-//        self.configureOData(onboardingContext.sapURLSession, onboardingContext.)
-//        self.setRootViewController()
-//    }
-    
-    func onboarded(onboardingContext: OnboardingContext, onboarding _: Bool) {
-        var configurationURL = (onboardingContext.info[OnboardingInfoKey.sapcpmsSettingsParameters] as! SAPcpmsSettingsParameters).url(forDestination: scpAppId)
-        if configurationURL == nil {
-            configurationURL = onboardingContext.info[OnboardingInfoKey.authenticationURL] as? URL
-        }
-        if configurationURL == nil {
-            // Adjust this path so it can be called after authentication and returns an HTTP 200 code. This is used to validate the authentication was successful.
-            configurationURL = URL(string: "\(getHostUrl)/\(scpAppId)")!
-            
-        }
-        self.configureOData(onboardingContext.sapURLSession, configurationURL!)
-        
-        self.setRootViewController()
-    }
+}
 
-    
-    // MARK: - Defining the Entry Point
-    
-    private func setRootViewController() {
-        DispatchQueue.main.async {
-            let splitViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MainSplitViewController") as! UISplitViewController
-            splitViewController.delegate = self
-            splitViewController.modalPresentationStyle = .currentContext
-            splitViewController.preferredDisplayMode = .allVisible
-            self.window!.rootViewController = splitViewController
-        }
-    }
-    
-    //MARK: - Split View
-    
-    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
-        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
-
-        if !topAsDetailController.isBeingPresented {
-            return true
-        }
-        return false
-    }
-    
-    // MARK: - Configure OData
-    
-    private func configureOData(_ urlSession: SAPURLSession, _ serviceRoot: URL) {
-        let odataProvider = OnlineODataProvider(serviceName: "APIPRODUCTSRVEntities", serviceRoot: serviceRoot, sapURLSession: urlSession)
-        odataProvider.serviceOptions.checkVersion = true
-        self.apiproductsrvEntities = APIPRODUCTSRVEntities(provider: odataProvider)
-        // To update entity force to use X-HTTP-Method header
-        self.apiproductsrvEntities.provider.networkOptions.tunneledMethods.append("MERGE")
+// Convenience accessor for the AppDelegate
+extension AppDelegate {
+    static var shared: AppDelegate {
+        return (UIApplication.shared.delegate as! AppDelegate)
     }
 }
 
+// MARK: – Onboarding related functionality
 
+// MARK: OnboardingSessionManager helper extension
+
+extension OnboardingSessionManager {
+    static var shared: OnboardingSessionManager<ApplicationOnboardingSession>! {
+        return AppDelegate.shared.sessionManager
+    }
+}
+
+extension AppDelegate {
+    /// Setup an onboarding session instance
+    func initializeOnboarding() {
+        let presentationDelegate = ApplicationUIManager(window: self.window!)
+        self.onboardingErrorHandler = OnboardingErrorHandler()
+        self.sessionManager = OnboardingSessionManager(presentationDelegate: presentationDelegate, flowProvider: self.flowProvider, delegate: self.onboardingErrorHandler)
+        presentationDelegate.showSplashScreenForOnboarding { _ in }
+        
+        self.onboardUser()
+    }
+    
+    /// Application specific code after successful onboard
+    func afterOnboard() {
+        guard let _ = self.sessionManager.onboardingSession else {
+            fatalError("Invalid state")
+        }
+    }
+    
+    /// Start onboarding a user
+    func onboardUser() {
+        self.sessionManager.open { error in
+            if let error = error {
+                self.onboardingErrorHandler?.handleOnboardingError(error)
+                return
+            }
+            self.afterOnboard()
+        }
+    }
+}
+
+// MARK: - ConnectivityObserver implementation
+
+extension AppDelegate {
+    func connectionEstablished() {
+        // connection established
+        self.logger.info("Connection established.")
+    }
+    
+    func connectionChanged(_ previousReachabilityType: ReachabilityType, reachabilityType _: ReachabilityType) {
+        // connection changed
+        self.logger.info("Connection changed.")
+        if case previousReachabilityType = ReachabilityType.offline {
+            // connection established
+            self.flowProvider.runSynchingFlow = true
+            OnboardingSessionManager.shared.open { error in
+                if let error = error {
+                    self.logger.error("Error in opeing session", error: error)
+                }
+            }
+        }
+    }
+    
+    func connectionLost() {
+        // connection lost
+        self.logger.info("Connection lost.")
+    }
+}

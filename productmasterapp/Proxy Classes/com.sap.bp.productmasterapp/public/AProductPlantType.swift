@@ -1,4 +1,4 @@
-// # Proxy Compiler 18.9.4-973a4d-20181128
+// # Proxy Compiler 19.9.0-197466-20190927
 
 import Foundation
 import SAPOData
@@ -86,6 +86,8 @@ open class AProductPlantType: EntityValue {
 
     private static var productCFOPCategory_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "ProductCFOPCategory")
 
+    private static var productIsExciseTaxRelevant_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "ProductIsExciseTaxRelevant")
+
     private static var toPlantMRPArea_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_PlantMRPArea")
 
     private static var toPlantQualityMgmt_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_PlantQualityMgmt")
@@ -140,8 +142,8 @@ open class AProductPlantType: EntityValue {
         }
     }
 
-    open class func array(from: EntityValueList) -> Array<AProductPlantType> {
-        return ArrayConverter.convert(from.toArray(), Array<AProductPlantType>())
+    open class func array(from: EntityValueList) -> [AProductPlantType] {
+        return ArrayConverter.convert(from.toArray(), [AProductPlantType]())
     }
 
     open class var availabilityCheckType: Property {
@@ -888,6 +890,32 @@ open class AProductPlantType: EntityValue {
         }
     }
 
+    open class var productIsExciseTaxRelevant: Property {
+        get {
+            objc_sync_enter(AProductPlantType.self)
+            defer { objc_sync_exit(AProductPlantType.self) }
+            do {
+                return AProductPlantType.productIsExciseTaxRelevant_
+            }
+        }
+        set(value) {
+            objc_sync_enter(AProductPlantType.self)
+            defer { objc_sync_exit(AProductPlantType.self) }
+            do {
+                AProductPlantType.productIsExciseTaxRelevant_ = value
+            }
+        }
+    }
+
+    open var productIsExciseTaxRelevant: Bool? {
+        get {
+            return BooleanValue.optional(self.optionalValue(for: AProductPlantType.productIsExciseTaxRelevant))
+        }
+        set(value) {
+            self.setOptionalValue(for: AProductPlantType.productIsExciseTaxRelevant, to: BooleanValue.of(optional: value))
+        }
+    }
+
     open class var productionInvtryManagedLoc: Property {
         get {
             objc_sync_enter(AProductPlantType.self)
@@ -1199,7 +1227,7 @@ open class AProductPlantType: EntityValue {
         }
     }
 
-    open class var toPlantStorage: Property {
+   open class var toPlantStorage: Property {
         get {
             objc_sync_enter(AProductPlantType.self)
             defer { objc_sync_exit(AProductPlantType.self) }

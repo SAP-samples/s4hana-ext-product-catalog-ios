@@ -1,4 +1,4 @@
-// # Proxy Compiler 18.9.4-973a4d-20181128
+// # Proxy Compiler 19.9.0-197466-20190927
 
 import Foundation
 import SAPOData
@@ -10,14 +10,14 @@ internal class APIPRODUCTSRVEntitiesMetadataChanges {
         APIPRODUCTSRVEntitiesMetadataChanges.merge1(metadata: metadata)
         try! APIPRODUCTSRVEntitiesFactory.registerAll()
     }
-    
+
     private static func merge1(metadata: CSDLDocument) {
         Ignore.valueOf_any(metadata)
+        if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductBasicTextType.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductBasicTextType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductBasicTextType")
+        }
         if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductDescriptionType.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductDescriptionType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductDescriptionType")
-        }
-        if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantProcurementType.isRemoved {
-            APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantProcurementType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductPlantProcurementType")
         }
         if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductPlantType")
@@ -25,32 +25,68 @@ internal class APIPRODUCTSRVEntitiesMetadataChanges {
         if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesDeliveryType.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesDeliveryType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductSalesDeliveryType")
         }
-        if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesTaxType.isRemoved {
-            APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesTaxType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductSalesTaxType")
-        }
-        if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductStorageLocationType.isRemoved {
-            APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductStorageLocationType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductStorageLocationType")
-        }
-        if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSupplyPlanningType.isRemoved {
-            APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSupplyPlanningType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductSupplyPlanningType")
-        }
         if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductType")
-        }
-        if !APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductWorkSchedulingType.isRemoved {
-            APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductWorkSchedulingType = metadata.entityType(withName: "API_PRODUCT_SRV.A_ProductWorkSchedulingType")
         }
         if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProduct.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntitySets.aProduct = metadata.entitySet(withName: "A_Product")
         }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductBasicText.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductBasicText = metadata.entitySet(withName: "A_ProductBasicText")
+        }
         if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductDescription.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductDescription = metadata.entitySet(withName: "A_ProductDescription")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductInspectionText.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductInspectionText = metadata.entitySet(withName: "A_ProductInspectionText")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductMLAccount.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductMLAccount = metadata.entitySet(withName: "A_ProductMLAccount")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductMLPrices.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductMLPrices = metadata.entitySet(withName: "A_ProductMLPrices")
         }
         if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlant.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlant = metadata.entitySet(withName: "A_ProductPlant")
         }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantCosting.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantCosting = metadata.entitySet(withName: "A_ProductPlantCosting")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantForecasting.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantForecasting = metadata.entitySet(withName: "A_ProductPlantForecasting")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantIntlTrd.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantIntlTrd = metadata.entitySet(withName: "A_ProductPlantIntlTrd")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantMRPArea.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantMRPArea = metadata.entitySet(withName: "A_ProductPlantMRPArea")
+        }
         if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantProcurement.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantProcurement = metadata.entitySet(withName: "A_ProductPlantProcurement")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantQualityMgmt.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantQualityMgmt = metadata.entitySet(withName: "A_ProductPlantQualityMgmt")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantSales.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantSales = metadata.entitySet(withName: "A_ProductPlantSales")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantStorage.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantStorage = metadata.entitySet(withName: "A_ProductPlantStorage")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantText.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPlantText = metadata.entitySet(withName: "A_ProductPlantText")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductProcurement.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductProcurement = metadata.entitySet(withName: "A_ProductProcurement")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPurchaseText.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductPurchaseText = metadata.entitySet(withName: "A_ProductPurchaseText")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductQualityMgmt.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductQualityMgmt = metadata.entitySet(withName: "A_ProductQualityMgmt")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSales.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSales = metadata.entitySet(withName: "A_ProductSales")
         }
         if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSalesDelivery.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSalesDelivery = metadata.entitySet(withName: "A_ProductSalesDelivery")
@@ -58,14 +94,41 @@ internal class APIPRODUCTSRVEntitiesMetadataChanges {
         if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSalesTax.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSalesTax = metadata.entitySet(withName: "A_ProductSalesTax")
         }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSalesText.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSalesText = metadata.entitySet(withName: "A_ProductSalesText")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductStorage.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductStorage = metadata.entitySet(withName: "A_ProductStorage")
+        }
         if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductStorageLocation.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductStorageLocation = metadata.entitySet(withName: "A_ProductStorageLocation")
         }
         if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSupplyPlanning.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductSupplyPlanning = metadata.entitySet(withName: "A_ProductSupplyPlanning")
         }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductUnitsOfMeasure.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductUnitsOfMeasure = metadata.entitySet(withName: "A_ProductUnitsOfMeasure")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductUnitsOfMeasureEAN.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductUnitsOfMeasureEAN = metadata.entitySet(withName: "A_ProductUnitsOfMeasureEAN")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductValuation.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductValuation = metadata.entitySet(withName: "A_ProductValuation")
+        }
+        if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductValuationAccount.isRemoved {
+            APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductValuationAccount = metadata.entitySet(withName: "A_ProductValuationAccount")
+        }
         if !APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductWorkScheduling.isRemoved {
             APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductWorkScheduling = metadata.entitySet(withName: "A_ProductWorkScheduling")
+        }
+        if !AProductBasicTextType.product.isRemoved {
+            AProductBasicTextType.product = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductBasicTextType.property(withName: "Product")
+        }
+        if !AProductBasicTextType.language.isRemoved {
+            AProductBasicTextType.language = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductBasicTextType.property(withName: "Language")
+        }
+        if !AProductBasicTextType.longText.isRemoved {
+            AProductBasicTextType.longText = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductBasicTextType.property(withName: "LongText")
         }
         if !AProductDescriptionType.product.isRemoved {
             AProductDescriptionType.product = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductDescriptionType.property(withName: "Product")
@@ -76,7 +139,6 @@ internal class APIPRODUCTSRVEntitiesMetadataChanges {
         if !AProductDescriptionType.productDescription.isRemoved {
             AProductDescriptionType.productDescription = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductDescriptionType.property(withName: "ProductDescription")
         }
-
         if !AProductPlantType.product.isRemoved {
             AProductPlantType.product = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "Product")
         }
@@ -194,6 +256,33 @@ internal class APIPRODUCTSRVEntitiesMetadataChanges {
         if !AProductPlantType.productCFOPCategory.isRemoved {
             AProductPlantType.productCFOPCategory = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "ProductCFOPCategory")
         }
+        if !AProductPlantType.productIsExciseTaxRelevant.isRemoved {
+            AProductPlantType.productIsExciseTaxRelevant = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "ProductIsExciseTaxRelevant")
+        }
+        if !AProductPlantType.toPlantMRPArea.isRemoved {
+            AProductPlantType.toPlantMRPArea = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_PlantMRPArea")
+        }
+        if !AProductPlantType.toPlantQualityMgmt.isRemoved {
+            AProductPlantType.toPlantQualityMgmt = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_PlantQualityMgmt")
+        }
+        if !AProductPlantType.toPlantSales.isRemoved {
+            AProductPlantType.toPlantSales = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_PlantSales")
+        }
+        if !AProductPlantType.toPlantStorage.isRemoved {
+            AProductPlantType.toPlantStorage = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_PlantStorage")
+        }
+        if !AProductPlantType.toPlantText.isRemoved {
+            AProductPlantType.toPlantText = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_PlantText")
+        }
+        if !AProductPlantType.toProdPlantInternationalTrade.isRemoved {
+            AProductPlantType.toProdPlantInternationalTrade = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_ProdPlantInternationalTrade")
+        }
+        if !AProductPlantType.toProductPlantCosting.isRemoved {
+            AProductPlantType.toProductPlantCosting = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_ProductPlantCosting")
+        }
+        if !AProductPlantType.toProductPlantForecast.isRemoved {
+            AProductPlantType.toProductPlantForecast = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_ProductPlantForecast")
+        }
         if !AProductPlantType.toProductPlantProcurement.isRemoved {
             AProductPlantType.toProductPlantProcurement = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductPlantType.property(withName: "to_ProductPlantProcurement")
         }
@@ -272,6 +361,12 @@ internal class APIPRODUCTSRVEntitiesMetadataChanges {
         if !AProductSalesDeliveryType.minimumMakeToOrderOrderQty.isRemoved {
             AProductSalesDeliveryType.minimumMakeToOrderOrderQty = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesDeliveryType.property(withName: "MinimumMakeToOrderOrderQty")
         }
+        if !AProductSalesDeliveryType.toSalesTax.isRemoved {
+            AProductSalesDeliveryType.toSalesTax = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesDeliveryType.property(withName: "to_SalesTax")
+        }
+        if !AProductSalesDeliveryType.toSalesText.isRemoved {
+            AProductSalesDeliveryType.toSalesText = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductSalesDeliveryType.property(withName: "to_SalesText")
+        }
         if !AProductType.product.isRemoved {
             AProductType.product = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "Product")
         }
@@ -295,6 +390,9 @@ internal class APIPRODUCTSRVEntitiesMetadataChanges {
         }
         if !AProductType.lastChangedByUser.isRemoved {
             AProductType.lastChangedByUser = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "LastChangedByUser")
+        }
+        if !AProductType.lastChangeDateTime.isRemoved {
+            AProductType.lastChangeDateTime = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "LastChangeDateTime")
         }
         if !AProductType.isMarkedForDeletion.isRemoved {
             AProductType.isMarkedForDeletion = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "IsMarkedForDeletion")
@@ -398,8 +496,14 @@ internal class APIPRODUCTSRVEntitiesMetadataChanges {
         if !AProductType.productManufacturerNumber.isRemoved {
             AProductType.productManufacturerNumber = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "ProductManufacturerNumber")
         }
+        if !AProductType.manufacturerNumber.isRemoved {
+            AProductType.manufacturerNumber = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "ManufacturerNumber")
+        }
         if !AProductType.manufacturerPartProfile.isRemoved {
             AProductType.manufacturerPartProfile = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "ManufacturerPartProfile")
+        }
+        if !AProductType.qltyMgmtInProcmtIsActive.isRemoved {
+            AProductType.qltyMgmtInProcmtIsActive = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "QltyMgmtInProcmtIsActive")
         }
         if !AProductType.changeNumber.isRemoved {
             AProductType.changeNumber = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "ChangeNumber")
@@ -461,17 +565,44 @@ internal class APIPRODUCTSRVEntitiesMetadataChanges {
         if !AProductType.maximumPackagingHeight.isRemoved {
             AProductType.maximumPackagingHeight = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "MaximumPackagingHeight")
         }
+        if !AProductType.unitForMaxPackagingDimensions.isRemoved {
+            AProductType.unitForMaxPackagingDimensions = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "UnitForMaxPackagingDimensions")
+        }
+        if !AProductType.yy1ProductTestPRD.isRemoved {
+            AProductType.yy1ProductTestPRD = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "YY1_ProductTest_PRD")
+        }
+        if !AProductType.yy1SaleableProductPRD.isRemoved {
+            AProductType.yy1SaleableProductPRD = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "YY1_SaleableProduct_PRD")
+        }
         if !AProductType.toDescription.isRemoved {
             AProductType.toDescription = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_Description")
         }
         if !AProductType.toPlant.isRemoved {
             AProductType.toPlant = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_Plant")
         }
+        if !AProductType.toProductBasicText.isRemoved {
+            AProductType.toProductBasicText = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_ProductBasicText")
+        }
+        if !AProductType.toProductInspectionText.isRemoved {
+            AProductType.toProductInspectionText = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_ProductInspectionText")
+        }
+        if !AProductType.toProductSales.isRemoved {
+            AProductType.toProductSales = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_ProductSales")
+        }
         if !AProductType.toProductSalesTax.isRemoved {
             AProductType.toProductSalesTax = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_ProductSalesTax")
         }
+        if !AProductType.toProductStorage.isRemoved {
+            AProductType.toProductStorage = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_ProductStorage")
+        }
+        if !AProductType.toProductUnitsOfMeasure.isRemoved {
+            AProductType.toProductUnitsOfMeasure = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_ProductUnitsOfMeasure")
+        }
         if !AProductType.toSalesDelivery.isRemoved {
             AProductType.toSalesDelivery = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_SalesDelivery")
+        }
+        if !AProductType.toValuation.isRemoved {
+            AProductType.toValuation = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_Valuation")
         }
     }
 }

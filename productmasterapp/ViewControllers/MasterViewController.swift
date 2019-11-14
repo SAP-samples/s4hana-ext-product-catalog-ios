@@ -1,14 +1,18 @@
 import UIKit
 import SAPOData
+import SAPOfflineOData
 import SAPFiori
 import SAPCommon
+import SAPFioriFlows
 
-class MasterViewController: UITableViewController, SAPFioriLoadingIndicator{
+
+class MasterViewController: UITableViewController, SAPFioriLoadingIndicator {
         
     // MARK: - UI Related Properties
     
     let defaultProductIcon = UIImage(named:"Icn.png")
     let toastMessageUpdated = "Successful Refresh"
+    let toastMessageDownloadFailed = "Download Failed! Please try again later."
     
     // MARK: - Properties
     
@@ -17,6 +21,8 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator{
     // Language for Product Description preconfigured for English
     let productDescriptionLanguage: String = "EN"
     var products = [AProductType]()
+    var descriptions = [AProductDescriptionType]()
+    var apiproductsrvEntities: APIPRODUCTSRVEntities<OfflineODataProvider>!
     
     let queriesTerminated = DispatchGroup()
     
@@ -31,10 +37,6 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator{
     // Default for the highlighted cell is the first entry in the table
     private var highlightedCell: IndexPath = IndexPath(row: 0, section: 0)
     
-    private var apiproductsrvEntities: APIPRODUCTSRVEntities<OnlineODataProvider> {
-        return self.appDelegate.apiproductsrvEntities
-    }
-    
     // MARK: - View Lifecycles
     
     override func viewDidLoad() {
@@ -45,10 +47,18 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator{
         
         syncMasterView.enter()
         self.showFioriLoadingIndicator("Loading Products...")
+
+        // Load Product API
+        guard let loadApiProductSrvEntities = ServiceConfiguration.initApiProductService(controller: self) else {
+            return
+        }
+        
+        self.apiproductsrvEntities = loadApiProductSrvEntities
+        
         self.loadProductData() {
             syncMasterView.leave()
         }
-        
+                
         syncMasterView.notify(queue: .main) {
             self.makeDefaultSelection()
             self.hideFioriLoadingIndicator()
@@ -94,7 +104,9 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator{
         let product: AProductType = (isFiltered ? filteredProducts[indexPath.row] : products[indexPath.row])
         cell.detailImage = defaultProductIcon
 
-        if let headline = product.toDescription.first?.productDescription {
+        let description  = descriptions.filter { $0.product == product.product }
+        
+        if let headline = description.first?.productDescription {
                 cell.headlineText = headline
         } else {
             cell.headlineText = "- No Description Found -"
@@ -142,11 +154,30 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator{
      *  Triggers a refresh of the Back-end Data. A Toast Message indicates a successful refresh.
      */
     func updateTable() {
-        DispatchQueue.main.async {
-            self.loadProductData() {
-                FUIToastMessage.show(message: self.toastMessageUpdated)
+        
+        self.showFioriLoadingIndicator("Updating Products...")
+        OnboardingSessionManager.shared.onboardingSession?.odataController.synchronize(completionHandler: { error in
+            
+            if let _ = error {
+                // Error happens in case the device is offline and can't connect to backed
+                DispatchQueue.main.async {
+                    self.hideFioriLoadingIndicator()
+                    FUIToastMessage.show(message: self.toastMessageDownloadFailed,
+                                         icon: FUIIconLibrary.system.information,
+                                         inView: self.tableView,
+                                         withDuration: 3.0,
+                                         maxNumberOfLines: 1)
+                }
+            } else {
+                // For a successfull download, execute the refresh request against the offline database
+                DispatchQueue.main.async {
+                    self.loadProductData() {
+                        self.hideFioriLoadingIndicator()
+                        FUIToastMessage.show(message: self.toastMessageUpdated)
+                    }
+                }
             }
-        }
+        })
     }
     
     // MARK: - Search Bar
@@ -179,8 +210,9 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator{
      *  Performs a default selection in case when the App is presented in a Split View.
      */
     private func setDefaultDetailView() {
+        
         // Automatically select first element if we have two panels (iPhone plus and iPad only)
-        if self.splitViewController!.isCollapsed || self.appDelegate.apiproductsrvEntities == nil {
+        if self.splitViewController!.isCollapsed || apiproductsrvEntities == nil {
             return
         }
         if let split = self.splitViewController {
@@ -212,7 +244,8 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator{
     }
     
     /**
-     *   Executes the Read Request, for to retrieve the data for the Product List. The Query expands to all required Entities: Description, Plant and Sales. The newly retrieved data is cached temporarily in local variables to ensure that the Application can still operate on the old data. Summarized, this function sends two queries - one for Product information’s, and one for the Products English Description - and combines them together.
+     *  Executes the Read Request, for to retrieve the relevant data for the MasterView. This requires the information for the Product List
+     *  and also - in this case - the enlish description. Hence, two queries are sent, to retrive the information from two different Entities.
      *   - parameter completionHandler: Closure for Error Handling
      */
     func requestEntities(completionHandler: @escaping (Error?) -> Void) {
@@ -221,54 +254,35 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator{
         var loadedProducts = [AProductType]()
         var loadedDescriptions = [AProductDescriptionType]()
         
-        let productQuery = DataQuery().select(AProductType.product, AProductType.productType, AProductType.productGroup)
-        let descriptionQuery = DataQuery().select(AProductDescriptionType.product, AProductDescriptionType.productDescription).filter(AProductDescriptionType.language.equal(productDescriptionLanguage))
-        
-        self.queriesTerminated.enter()
+        // Define the queries, which retrieve only the required properties
+        let productQuery = QueryDefinitionHelper.initProductMainViewQuery()
+
         self.queriesTerminated.enter()
         
         // Execute the Query to retrieve the Product information
-        self.apiproductsrvEntities.fetchAProduct(matching: productQuery) { aProduct, error in
+        apiproductsrvEntities.fetchAProduct(matching: productQuery) { aProduct, error in
             guard let aProduct = aProduct else {
                 completionHandler(error!)
                 return
             }
+            
             loadedProducts = aProduct
             
             self.queriesTerminated.leave()
         }
-        
-        // Execute the Query to retrieve the English Description for the Products
-        self.apiproductsrvEntities.fetchAProductDescription(matching: descriptionQuery) { aDescription, error in
-            guard let aDescription = aDescription else {
-                completionHandler(error!)
-                return
-            }
-            loadedDescriptions = aDescription
             
-            self.queriesTerminated.leave()
-        }
-        
         self.queriesTerminated.notify(queue: .main) {
-            loadedProducts = self.appendDescriptionsToProducts(products: loadedProducts, descriptions: loadedDescriptions)
+            
+            // Extract per Product a certain description for a Language
+            let extractedDescriptions: [[AProductDescriptionType]] = loadedProducts.map { $0.toDescription.filter {$0.language == self.productDescriptionLanguage}}
+            extractedDescriptions.forEach {description in loadedDescriptions.append(description.first!) }
+            
             self.products = loadedProducts
+            self.descriptions = loadedDescriptions
+
             self.tableView.reloadData()
             completionHandler(nil)
         }
-    }
-    
-    /**
-     *   Assigns and appends each Products Description to its corresponding Product
-     *   - parameter products: List of Products
-     *   - parameter descriptions: List of Descriptions, which are going to be appended to the Products
-     *   - returns: An array with product entity object, which have the correctly  appended Descriptions
-     */
-    func appendDescriptionsToProducts(products: [AProductType], descriptions: [AProductDescriptionType]) -> [AProductType] {
-    
-        for product in products {
-            product.toDescription = descriptions.filter { $0.product == product.product }
-        }
-        return products
     }
     
     // MARK: - Actions

@@ -2,7 +2,7 @@ import Foundation
 import SAPFiori
 
 
-class CustomCellCreator: UITableViewController {
+class CellHelper: UITableViewController {
     
     /**
      *   Creates a TableView cell of the type FUISimplePropertyFormCell and assigns content to cell's filed name and value.
@@ -20,6 +20,7 @@ class CustomCellCreator: UITableViewController {
         cell.isEditable = false
         cell.keyName = cellKeyName
         cell.value = cellValue
+        cell.isStacked = false
         
         return cell
     }
@@ -42,6 +43,35 @@ class CustomCellCreator: UITableViewController {
         cell.value = cellValue
         
         return cell
+    }
+    
+    /**
+     *  Performs all configuration and initialization of a given cell.
+     *  - parameter keyName: Set the cells name
+     *  - parameter value: Set the cells value
+     */
+    static func configureCell(_ cell: FUITextFieldFormCell!,_ keyName: String?,_ value: String?, hasDisclosure: Bool) {
+        
+        if let cellLabel = keyName {
+            cell.keyName = cellLabel
+        } else {
+            cell.keyName = " "
+        }
+                
+        if let cellValue = value {
+            cell.value = cellValue
+        } else {
+            cell.value = " "
+            cell.valueTextField.text = " "
+        }
+        
+        if hasDisclosure {
+            cell.accessoryType = .disclosureIndicator
+        }
+        
+        cell.maxKeyWidth = 180
+        cell.isEditable = false
+        cell.isStacked = false
     }
     
 }

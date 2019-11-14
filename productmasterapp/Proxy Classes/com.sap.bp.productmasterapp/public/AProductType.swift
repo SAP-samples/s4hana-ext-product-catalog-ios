@@ -1,4 +1,4 @@
-// # Proxy Compiler 18.9.4-973a4d-20181128
+// # Proxy Compiler 19.9.0-197466-20190927
 
 import Foundation
 import SAPOData
@@ -98,6 +98,8 @@ open class AProductType: EntityValue {
 
     private static var manufacturerPartProfile_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "ManufacturerPartProfile")
 
+    private static var qltyMgmtInProcmtIsActive_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "QltyMgmtInProcmtIsActive")
+
     private static var changeNumber_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "ChangeNumber")
 
     private static var materialRevisionLevel_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "MaterialRevisionLevel")
@@ -138,9 +140,9 @@ open class AProductType: EntityValue {
 
     private static var maximumPackagingHeight_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "MaximumPackagingHeight")
 
-    private static var yy1TestFlagPRD_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "YY1_TestFlag_PRD")
+    private static var unitForMaxPackagingDimensions_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "UnitForMaxPackagingDimensions")
 
-    private static var yy1WebSaleablePRD_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "YY1_WebSaleable_PRD")
+    private static var yy1ProductTestPRD_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "YY1_ProductTest_PRD")
 
     private static var yy1SaleableProductPRD_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "YY1_SaleableProduct_PRD")
 
@@ -167,6 +169,8 @@ open class AProductType: EntityValue {
     private static var toProductUnitsOfMeasure_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_ProductUnitsOfMeasure")
 
     private static var toSalesDelivery_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_SalesDelivery")
+
+    private static var toValuation_: Property = APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType.property(withName: "to_Valuation")
 
     public init(withDefaults: Bool = true) {
         super.init(withDefaults: withDefaults, type: APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductType)
@@ -224,8 +228,8 @@ open class AProductType: EntityValue {
         }
     }
 
-    open class func array(from: EntityValueList) -> Array<AProductType> {
-        return ArrayConverter.convert(from.toArray(), Array<AProductType>())
+    open class func array(from: EntityValueList) -> [AProductType] {
+        return ArrayConverter.convert(from.toArray(), [AProductType]())
     }
 
     open class var authorizationGroup: Property {
@@ -1492,6 +1496,32 @@ open class AProductType: EntityValue {
         }
     }
 
+    open class var qltyMgmtInProcmtIsActive: Property {
+        get {
+            objc_sync_enter(AProductType.self)
+            defer { objc_sync_exit(AProductType.self) }
+            do {
+                return AProductType.qltyMgmtInProcmtIsActive_
+            }
+        }
+        set(value) {
+            objc_sync_enter(AProductType.self)
+            defer { objc_sync_exit(AProductType.self) }
+            do {
+                AProductType.qltyMgmtInProcmtIsActive_ = value
+            }
+        }
+    }
+
+    open var qltyMgmtInProcmtIsActive: Bool? {
+        get {
+            return BooleanValue.optional(self.optionalValue(for: AProductType.qltyMgmtInProcmtIsActive))
+        }
+        set(value) {
+            self.setOptionalValue(for: AProductType.qltyMgmtInProcmtIsActive, to: BooleanValue.of(optional: value))
+        }
+    }
+
     open class var qualityInspectionGroup: Property {
         get {
             objc_sync_enter(AProductType.self)
@@ -1743,12 +1773,12 @@ open class AProductType: EntityValue {
         }
     }
 
-    open var toDescription: Array<AProductDescriptionType> {
+    open var toDescription: [AProductDescriptionType] {
         get {
-            return ArrayConverter.convert(EntityValueList.castRequired(self.requiredValue(for: AProductType.toDescription)).toArray(), Array<AProductDescriptionType>())
+            return ArrayConverter.convert(AProductType.toDescription.entityList(from: self).toArray(), [AProductDescriptionType]())
         }
         set(value) {
-            AProductType.toDescription.setEntityList(in: self, to: EntityValueList.fromArray(ArrayConverter.convert(value, Array<EntityValue>())))
+            AProductType.toDescription.setEntityList(in: self, to: EntityValueList.fromArray(ArrayConverter.convert(value, [EntityValue]())))
         }
     }
 
@@ -1769,12 +1799,12 @@ open class AProductType: EntityValue {
         }
     }
 
-    open var toPlant: Array<AProductPlantType> {
+    open var toPlant: [AProductPlantType] {
         get {
-            return ArrayConverter.convert(EntityValueList.castRequired(self.requiredValue(for: AProductType.toPlant)).toArray(), Array<AProductPlantType>())
+            return ArrayConverter.convert(AProductType.toPlant.entityList(from: self).toArray(), [AProductPlantType]())
         }
         set(value) {
-            AProductType.toPlant.setEntityList(in: self, to: EntityValueList.fromArray(ArrayConverter.convert(value, Array<EntityValue>())))
+            AProductType.toPlant.setEntityList(in: self, to: EntityValueList.fromArray(ArrayConverter.convert(value, [EntityValue]())))
         }
     }
 
@@ -1795,6 +1825,15 @@ open class AProductType: EntityValue {
         }
     }
 
+    open var toProductBasicText: [AProductBasicTextType] {
+        get {
+            return ArrayConverter.convert(AProductType.toProductBasicText.entityList(from: self).toArray(), [AProductBasicTextType]())
+        }
+        set(value) {
+            AProductType.toProductBasicText.setEntityList(in: self, to: EntityValueList.fromArray(ArrayConverter.convert(value, [EntityValue]())))
+        }
+    }
+
     open class var toProductInspectionText: Property {
         get {
             objc_sync_enter(AProductType.self)
@@ -1808,40 +1847,6 @@ open class AProductType: EntityValue {
             defer { objc_sync_exit(AProductType.self) }
             do {
                 AProductType.toProductInspectionText_ = value
-            }
-        }
-    }
-
-    open class var toProductProcurement: Property {
-        get {
-            objc_sync_enter(AProductType.self)
-            defer { objc_sync_exit(AProductType.self) }
-            do {
-                return AProductType.toProductProcurement_
-            }
-        }
-        set(value) {
-            objc_sync_enter(AProductType.self)
-            defer { objc_sync_exit(AProductType.self) }
-            do {
-                AProductType.toProductProcurement_ = value
-            }
-        }
-    }
-
-    open class var toProductPurchaseText: Property {
-        get {
-            objc_sync_enter(AProductType.self)
-            defer { objc_sync_exit(AProductType.self) }
-            do {
-                return AProductType.toProductPurchaseText_
-            }
-        }
-        set(value) {
-            objc_sync_enter(AProductType.self)
-            defer { objc_sync_exit(AProductType.self) }
-            do {
-                AProductType.toProductPurchaseText_ = value
             }
         }
     }
@@ -1948,12 +1953,55 @@ open class AProductType: EntityValue {
         }
     }
 
-    open var toSalesDelivery: Array<AProductSalesDeliveryType> {
+    open var toSalesDelivery: [AProductSalesDeliveryType] {
         get {
-            return ArrayConverter.convert(EntityValueList.castRequired(self.requiredValue(for: AProductType.toSalesDelivery)).toArray(), Array<AProductSalesDeliveryType>())
+            return ArrayConverter.convert(AProductType.toSalesDelivery.entityList(from: self).toArray(), [AProductSalesDeliveryType]())
         }
         set(value) {
-            AProductType.toSalesDelivery.setEntityList(in: self, to: EntityValueList.fromArray(ArrayConverter.convert(value, Array<EntityValue>())))
+            AProductType.toSalesDelivery.setEntityList(in: self, to: EntityValueList.fromArray(ArrayConverter.convert(value, [EntityValue]())))
+        }
+    }
+
+    open class var toValuation: Property {
+        get {
+            objc_sync_enter(AProductType.self)
+            defer { objc_sync_exit(AProductType.self) }
+            do {
+                return AProductType.toValuation_
+            }
+        }
+        set(value) {
+            objc_sync_enter(AProductType.self)
+            defer { objc_sync_exit(AProductType.self) }
+            do {
+                AProductType.toValuation_ = value
+            }
+        }
+    }
+
+    open class var unitForMaxPackagingDimensions: Property {
+        get {
+            objc_sync_enter(AProductType.self)
+            defer { objc_sync_exit(AProductType.self) }
+            do {
+                return AProductType.unitForMaxPackagingDimensions_
+            }
+        }
+        set(value) {
+            objc_sync_enter(AProductType.self)
+            defer { objc_sync_exit(AProductType.self) }
+            do {
+                AProductType.unitForMaxPackagingDimensions_ = value
+            }
+        }
+    }
+
+    open var unitForMaxPackagingDimensions: String? {
+        get {
+            return StringValue.optional(self.optionalValue(for: AProductType.unitForMaxPackagingDimensions))
+        }
+        set(value) {
+            self.setOptionalValue(for: AProductType.unitForMaxPackagingDimensions, to: StringValue.of(optional: value))
         }
     }
 
@@ -2113,6 +2161,32 @@ open class AProductType: EntityValue {
         }
     }
 
+    open class var yy1ProductTestPRD: Property {
+        get {
+            objc_sync_enter(AProductType.self)
+            defer { objc_sync_exit(AProductType.self) }
+            do {
+                return AProductType.yy1ProductTestPRD_
+            }
+        }
+        set(value) {
+            objc_sync_enter(AProductType.self)
+            defer { objc_sync_exit(AProductType.self) }
+            do {
+                AProductType.yy1ProductTestPRD_ = value
+            }
+        }
+    }
+
+    open var yy1ProductTestPRD: String? {
+        get {
+            return StringValue.optional(self.optionalValue(for: AProductType.yy1ProductTestPRD))
+        }
+        set(value) {
+            self.setOptionalValue(for: AProductType.yy1ProductTestPRD, to: StringValue.of(optional: value))
+        }
+    }
+
     open class var yy1SaleableProductPRD: Property {
         get {
             objc_sync_enter(AProductType.self)
@@ -2136,58 +2210,6 @@ open class AProductType: EntityValue {
         }
         set(value) {
             self.setOptionalValue(for: AProductType.yy1SaleableProductPRD, to: BooleanValue.of(optional: value))
-        }
-    }
-
-    open class var yy1TestFlagPRD: Property {
-        get {
-            objc_sync_enter(AProductType.self)
-            defer { objc_sync_exit(AProductType.self) }
-            do {
-                return AProductType.yy1TestFlagPRD_
-            }
-        }
-        set(value) {
-            objc_sync_enter(AProductType.self)
-            defer { objc_sync_exit(AProductType.self) }
-            do {
-                AProductType.yy1TestFlagPRD_ = value
-            }
-        }
-    }
-
-    open var yy1TestFlagPRD: Bool? {
-        get {
-            return BooleanValue.optional(self.optionalValue(for: AProductType.yy1TestFlagPRD))
-        }
-        set(value) {
-            self.setOptionalValue(for: AProductType.yy1TestFlagPRD, to: BooleanValue.of(optional: value))
-        }
-    }
-
-    open class var yy1WebSaleablePRD: Property {
-        get {
-            objc_sync_enter(AProductType.self)
-            defer { objc_sync_exit(AProductType.self) }
-            do {
-                return AProductType.yy1WebSaleablePRD_
-            }
-        }
-        set(value) {
-            objc_sync_enter(AProductType.self)
-            defer { objc_sync_exit(AProductType.self) }
-            do {
-                AProductType.yy1WebSaleablePRD_ = value
-            }
-        }
-    }
-
-    open var yy1WebSaleablePRD: Bool? {
-        get {
-            return BooleanValue.optional(self.optionalValue(for: AProductType.yy1WebSaleablePRD))
-        }
-        set(value) {
-            self.setOptionalValue(for: AProductType.yy1WebSaleablePRD, to: BooleanValue.of(optional: value))
         }
     }
 }

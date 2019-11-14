@@ -5,7 +5,7 @@ This repository contains the sample code for the [Display SAP S/4HANA Cloud Prod
 
 ## Description
 
-The [Display SAP S/4HANA Cloud Products on an iOS Device tutorial](http://tiny.cc/s4-product-catalog-ios) showcases an extension to an SAP S/4HANA Cloud system that allows users to check the details of certain products directly in a warehouse using an iOS device. The iOS app fetches product data from your SAP S/4HANA Cloud system, and lists them. Users can search for certain products by the product ID and select specific products details. The details include basic products data, product descriptions, and information about plants and sales.
+The [Display SAP S/4HANA Cloud Products on an iOS Device tutorial](http://tiny.cc/s4-product-catalog-ios) showcases an extension to an SAP S/4HANA Cloud system that allows users to check the details of certain products directly in a warehouse using an iOS device. The iOS app fetches product data from your SAP S/4HANA Cloud system, and lists them. Users can search for certain products by the product ID and select specific products details. The details include basic products data, product descriptions, and information about plants and sales.  You can read this product data even when your device is offline.
 
 
 #### SAP Extensibility Explorer
@@ -17,7 +17,7 @@ SAP Extensibility Explorer is a central place where anyone involved in the exten
 Requirements
 -------------
 - An account in SAP Cloud Platform with a subaccount in the Neo environment and Mobile Services enabled.
-- A Mac Device with Xcode 10.1 and SAP iOS SDK 3.0.300.
+- A Mac Device with **Xcode 11.1 (11A1027)** and **SAP Cloud Platform SDK for iOS (Xcode 11) 4.0 SP00 PL00**.
 
 
 Download and Installation

@@ -1,8 +1,10 @@
 import UIKit
 import SAPFiori
 import SAPOData
+import SAPOfflineOData
+import SAPFioriFlows
 
-class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, RefreshSectionViewDelegate {
+class DetailViewController: FUIFormTableViewController, SAPFioriLoadingIndicator, RefreshSectionViewDelegate {
     
     // MARK: - Outlets
     
@@ -14,17 +16,33 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
     private static let plantSegue = "showPlant"
     private static let saleSegue = "showSale"
     
-    //private let segues = [self.descriptionSegue, self.plantSegue, self.saleSegue]
-    
     // MARK: - UI Related Constants
     
     private static let sectionHeaderHeight: CGFloat = 60
     private static let sectionFooterHight: CGFloat = 2
     private static let cellsHeight: CGFloat = 55
     
-    private let sectionTitles: [Int: String] = [0: "BASIC DATA", 1: "DESCRIPTIONS", 2: "PLANTS", 3: "SALES"]
+    private let cellLabelForEmptyCell: String = "No items found."
+    private let cellValueForEmptyCell: String = " "
     
-    private let propertiesForProduct: [Int: [String: Property]] = [0: ["Product ID": AProductType.product], 1: ["Product Group": AProductType.productGroup], 2: ["Product Type": AProductType.productType], 3: ["Base Unit": AProductType.baseUnit], 4: ["Brand": AProductType.brand], 5: ["Country of Origin": AProductType.countryOfOrigin], 6: ["Product Manufacturer Number": AProductType.productManufacturerNumber], 7: ["Gross Weight": AProductType.grossWeight], 8: ["Size or Dimensional Text": AProductType.sizeOrDimensionText], 9: ["Created by User": AProductType.createdByUser], 10: ["Creation Date": AProductType.creationDate], 11: ["Last Changed by User": AProductType.lastChangedByUser], 12: ["Last Change Date": AProductType.lastChangeDate]]
+    private let sectionTitles: [Int: String] = [0: "BASIC DATA",
+                                                1: "DESCRIPTIONS",
+                                                2: "PLANTS",
+                                                3: "SALES"]
+    
+    private let propertiesForProduct: [Int: [String: Property]] = [0: ["Product ID": AProductType.product],
+                                                                   1: ["Product Group": AProductType.productGroup],
+                                                                   2: ["Product Type": AProductType.productType],
+                                                                   3: ["Base Unit": AProductType.baseUnit],
+                                                                   4: ["Brand": AProductType.brand],
+                                                                   5: ["Country of Origin": AProductType.countryOfOrigin],
+                                                                   6: ["Product Manufacturer Number": AProductType.productManufacturerNumber],
+                                                                   7: ["Gross Weight": AProductType.grossWeight],
+                                                                   8: ["Size or Dimensional Text": AProductType.sizeOrDimensionText],
+                                                                   9: ["Created by User": AProductType.createdByUser],
+                                                                   10: ["Creation Date": AProductType.creationDate],
+                                                                   11: ["Last Changed by User": AProductType.lastChangedByUser],
+                                                                   12: ["Last Change Date": AProductType.lastChangeDate]]
     
     private var expandableSections: [SectionHandler] = []
     
@@ -33,12 +51,16 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
     
     // MARK: - Properties
     
+    var apiproductsrvEntities: APIPRODUCTSRVEntities<OfflineODataProvider>!
+
     var productID: String?
-    var product: AProductType?
     
-    private var apiproductsrvEntities: APIPRODUCTSRVEntities<OnlineODataProvider> {
-        return self.appDelegate.apiproductsrvEntities
-    }
+    var productEntity: AProductType?
+    var productDescriptionEntity: [AProductDescriptionType]?
+    var productPlantEntity: [AProductPlantType]?
+    var productSalesDeliveryEntity: [AProductSalesDeliveryType]?
+    
+    let queriesTerminated = DispatchGroup()
     
     // MARK: - View Lifecycles
     
@@ -68,53 +90,77 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let currentSegue = segue.identifier {
             if let indexPath = tableView.indexPathForSelectedRow {
-                if let loadedProduct = product {
-                    switch currentSegue {
+                
+                switch currentSegue {
                         
-                    case DetailViewController.descriptionSegue:
-                        let controller = segue.destination as! DescriptionDetailViewController
-                        controller.productDescription = loadedProduct.toDescription[indexPath.row]
-                    
-                    case DetailViewController.plantSegue:
-                        let controller = segue.destination as! PlantDetailViewController
-                        controller.productPlant = loadedProduct.toPlant[indexPath.row]
-                            
-                    case DetailViewController.saleSegue:
-                        let controller = segue.destination as! SalesDetailViewController
-                        controller.productSale = loadedProduct.toSalesDelivery[indexPath.row]
-                        
-                    default:
-                        break
+                case DetailViewController.descriptionSegue:
+                    guard let loadedProductDescriptionEntity = productDescriptionEntity else {
+                        return
                     }
+                    
+                    let controller = segue.destination as! DescriptionDetailViewController
+                    controller.productDescription = loadedProductDescriptionEntity[indexPath.row]
+                        
+                case DetailViewController.plantSegue:
+                    guard let loadedProductPlantEntity = productPlantEntity else {
+                        return
+                    }
+                    
+                    let controller = segue.destination as! PlantDetailViewController
+                    controller.productPlant = loadedProductPlantEntity[indexPath.row]
+                        
+                case DetailViewController.saleSegue:
+                    guard let loadedProductSalesDeliveryEntity = productSalesDeliveryEntity else {
+                        return
+                    }
+                    
+                    let controller = segue.destination as! SalesDetailViewController
+                    controller.productSale = loadedProductSalesDeliveryEntity[indexPath.row]
+                        
+                default:
+                    return
                 }
             }
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if let loadedProduct = product {
+        
             switch identifier {
+                
             case DetailViewController.descriptionSegue:
-                return isCellInSectionSelectable(loadedProduct.toDescription.count)
+                guard let loadedProductDescriptionEntity = productDescriptionEntity else {
+                    return false
+                }
+                
+                return isCellInSectionSelectable(loadedProductDescriptionEntity.count)
+                
             case DetailViewController.plantSegue:
-                return isCellInSectionSelectable(loadedProduct.toPlant.count)
+                guard let loadedProductPlantEntity = productPlantEntity else {
+                    return false
+                }
+                
+                return isCellInSectionSelectable(loadedProductPlantEntity.count)
+                
             case DetailViewController.saleSegue:
-                return isCellInSectionSelectable(loadedProduct.toSalesDelivery.count)
+                guard let loadedProductSalesDeliveryEntity = productSalesDeliveryEntity else {
+                    return false
+                }
+                return isCellInSectionSelectable(loadedProductSalesDeliveryEntity.count)
+                
             default:
                 return false
             }
-        }
-        return false
     }
     
     // MARK: - Table View
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return product != nil ? sectionTitles.count : 0
+        return productEntity != nil ? sectionTitles.count : 0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard product != nil else {
+        guard productEntity != nil else {
             // Return an empty View in case the product data was not loaded yet
             return UIView()
         }
@@ -139,9 +185,10 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
         return 0
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> FUITextFieldFormCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Optional unchaining ensures only to execute when the product was loaded
-        if let loadedProduct = product {
+        if let loadedProduct = productEntity {
+
             // Depending on the section, different cells are created
             switch indexPath.section {
                 
@@ -153,18 +200,17 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
             // Descriptions Section
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionID", for: indexPath) as! FUITextFieldFormCell
-                return cellForDescriptionType(cell, indexPath: indexPath, currentEntity: loadedProduct)
-                
+                return cellForDescriptionType(cell, indexPath: indexPath, currentEntity: productDescriptionEntity)
+
             // Plants Section
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "PlantID", for: indexPath) as! FUITextFieldFormCell
-                return cellForPlantType(cell, indexPath: indexPath, currentEntity: loadedProduct)
+                return cellForPlantType(cell, indexPath: indexPath, currentEntity: productPlantEntity)
                 
             // Sales Section
             case 3:
-                
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SaleID", for: indexPath) as! FUITextFieldFormCell
-                return cellForSalesType(cell, indexPath: indexPath, currentEntity: loadedProduct)
+                return cellForSalesType(cell, indexPath: indexPath, currentEntity: productSalesDeliveryEntity)
                 
             // In all other cases show an error popup
             default:
@@ -176,8 +222,11 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
                 })
             }
         }
+        
         let emptyCell = tableView.dequeueReusableCell(withIdentifier: "ProductPropertyID", for: indexPath) as! FUITextFieldFormCell
-        initializeCellWithDefaultConfigurations(emptyCell, keyName: " ", value: " ")
+        let emptyCellContent: String = " "
+        CellHelper.configureCell(emptyCell, emptyCellContent, emptyCellContent, hasDisclosure: false)
+        
         return emptyCell
     }
     
@@ -191,17 +240,13 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
      */
     private func cellForProductType(_ cell: FUITextFieldFormCell!, indexPath: IndexPath, currentEntity: AProductType) -> FUITextFieldFormCell {
         
-        cell.keyName = (propertiesForProduct[indexPath.row]?.first?.key)!
-        cell.isEditable = false
+        let cellLabel: String? = (propertiesForProduct[indexPath.row]?.first?.key)!
         
         let property: Property = (propertiesForProduct[indexPath.row]?.first?.value)!
-        
-        if let cellValue = currentEntity.dataValue(for: property)?.toString() {
-            cell.value = cellValue
-        } else {
-            // For the case, when the entity value is empty or not set
-            cell.value = " "
-        }
+        let cellValue: String? = currentEntity.dataValue(for: property)?.toString()
+                
+        CellHelper.configureCell(cell, cellLabel, cellValue, hasDisclosure: false)
+
         return cell
     }
     
@@ -211,21 +256,19 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
      *   - parameter indexPath: The index for detecting the current processed row in the Table
      *   - returns: Specified cell with all required Description values
      */
-    private func cellForDescriptionType(_ cell: FUITextFieldFormCell!,  indexPath: IndexPath, currentEntity: AProductType?) -> FUITextFieldFormCell {
-        
-        guard let entityContent = currentEntity, !entityContent.toDescription.isEmpty else {
-            // When the cell is stated as empty, there is no further Navigation possible inside that cell
-            initializeCellWithDefaultConfigurations(cell, keyName: "No items found.", value: " ")
+    private func cellForDescriptionType(_ cell: FUITextFieldFormCell!,  indexPath: IndexPath, currentEntity: [AProductDescriptionType]?) -> FUITextFieldFormCell {
+    
+        guard let entityContent = currentEntity, !entityContent.isEmpty else {
+            CellHelper.configureCell(cell, cellLabelForEmptyCell, cellValueForEmptyCell, hasDisclosure: false)
             return cell
         }
+    
+        let cellLabel: String? = entityContent[indexPath.row].productDescription
+        let cellValue: String? = entityContent[indexPath.row].language
         
-        cell.keyName = entityContent.toDescription[indexPath.row].productDescription
-        cell.value = entityContent.toDescription[indexPath.row].language!
-        cell.isEditable = false
-        cell.accessoryType = .disclosureIndicator
-        
+        CellHelper.configureCell(cell, cellLabel, cellValue, hasDisclosure: true)
+                
         return cell
-        
     }
     
     /**
@@ -234,17 +277,18 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
      *   - parameter indexPath: The index for detecting the current processed row in the Table
      *   - returns: Specified cell with all required Plant values
      */
-    private func cellForPlantType(_ cell: FUITextFieldFormCell!, indexPath: IndexPath, currentEntity: AProductType?) -> FUITextFieldFormCell {
+    private func cellForPlantType(_ cell: FUITextFieldFormCell!, indexPath: IndexPath, currentEntity: [AProductPlantType]?) -> FUITextFieldFormCell {
         
-        initializeCellWithDefaultConfigurations(cell, keyName: "No items found.", value: " ")
-        // When the cell is stated as empty, there is no further Navigation possible inside that cell
-        if let entityContent = currentEntity {
-            if !entityContent.toPlant.isEmpty {
-                cell.keyName = entityContent.toPlant[indexPath.row].plant
-                cell.value = "\(entityContent.toPlant[indexPath.row].maximumLotSizeQuantity!)"
-                cell.accessoryType = .disclosureIndicator
-            }
+        guard let entityContent = currentEntity, !entityContent.isEmpty else {
+            CellHelper.configureCell(cell, cellLabelForEmptyCell, cellValueForEmptyCell, hasDisclosure: false)
+            return cell
         }
+        
+        let cellLabel: String? = entityContent[indexPath.row].plant
+        let cellValue: String? = "\(entityContent[indexPath.row].maximumLotSizeQuantity!)"
+            
+        CellHelper.configureCell(cell, cellLabel, cellValue, hasDisclosure: true)
+        
         return cell
     }
     
@@ -254,31 +298,21 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
      *   - parameter indexPath: The index for detecting the current processed row in the Table
      *   - returns: Specified cell with all required Sales values
      */
-    private func cellForSalesType(_ cell: FUITextFieldFormCell!,  indexPath: IndexPath, currentEntity: AProductType?) -> FUITextFieldFormCell {
-        
-        initializeCellWithDefaultConfigurations(cell, keyName: "No items found.", value: " ")
-        // When the cell is stated as empty, there is no further Navigation possible inside that cell
-        if let entityContent = currentEntity {
-            if !entityContent.toSalesDelivery.isEmpty {
-                cell.keyName = entityContent.toSalesDelivery[indexPath.row].productSalesOrg
-                cell.value = entityContent.toSalesDelivery[indexPath.row].productSalesStatus!
-                cell.accessoryType = .disclosureIndicator
-            }
+    private func cellForSalesType(_ cell: FUITextFieldFormCell!,  indexPath: IndexPath, currentEntity: [AProductSalesDeliveryType]?) -> FUITextFieldFormCell {
+                
+        guard let entityContent = currentEntity, !entityContent.isEmpty else {
+            CellHelper.configureCell(cell, cellLabelForEmptyCell, cellValueForEmptyCell, hasDisclosure: false)
+            return cell
         }
+        
+        let cellLabel: String? = entityContent[indexPath.row].productSalesOrg
+        let cellValue: String? = entityContent[indexPath.row].productSalesStatus!
+            
+        CellHelper.configureCell(cell, cellLabel, cellValue, hasDisclosure: true)
+    
         return cell
     }
-    
-    /**
-     *   Default initialization of a cells name and value. The cell is configured as non-editable.
-     *   - parameter keyName: Set the cells name
-     *   - parameter value: Set the cells value
-     */
-    private func initializeCellWithDefaultConfigurations(_ cell: FUITextFieldFormCell, keyName: String, value: String) {
-        cell.isEditable = false
-        cell.keyName = keyName
-        cell.value = value
-    }
-    
+        
     // MARK: - CRUD Operations
     
     /**
@@ -287,7 +321,13 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
      *   - parameter completionHandler: Closure Operations executed asynchronous
      */
     private func loadDetailData(productId: String, completionHandler: @escaping() -> Void){
-        self.requestSelectedProductEntities(productId: productId) { error in
+        // Load Product API
+        guard let loadApiProductSrvEntities = ServiceConfiguration.initApiProductService(controller: self) else {
+            return
+        }
+        self.apiproductsrvEntities = loadApiProductSrvEntities
+        
+        self.requestEntitiesForSelectedProduct(productId: productId) { error in
             guard error == nil else {
                 return
             }
@@ -298,21 +338,38 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
     }
     
     /**
-     *   Executes the Read Request, for a specific Product. The Query expands to all required Entities: Description, Plant and Sales.
+     *   Executes the Read Requests, for all required entities for the selected Product. The affected entities are: (Language) Description, Plant and Sales.
      *   - parameter productId: Filters the Query Request by the selected Product ID
      *   - parameter completionHandler: Closure for Error Handling
      */
-    private func requestSelectedProductEntities(productId: String, completionHandler: @escaping (Error?) -> Void) {
-        // Query to load the product entity, only with the required properties
-        let extendedProductQuery = DataQuery().select(AProductType.product, AProductType.productType, AProductType.productGroup, AProductType.baseUnit, AProductType.brand, AProductType.countryOfOrigin, AProductType.productManufacturerNumber, AProductType.grossWeight, AProductType.sizeOrDimensionText, AProductType.createdByUser, AProductType.creationDate, AProductType.lastChangeDate, AProductType.lastChangedByUser, AProductType.toDescription, AProductType.toPlant, AProductType.toSalesDelivery).filter(AProductType.product.equal(productId)).expand(AProductType.toDescription,AProductType.toPlant,AProductType.toSalesDelivery)
+    private func requestEntitiesForSelectedProduct(productId: String, completionHandler: @escaping (Error?) -> Void) {
         
-        self.apiproductsrvEntities.fetchAProduct(matching: extendedProductQuery) { aDetailProduct, error in
-            guard let aSelectedDetailProduct = aDetailProduct else {
+        // Caches the retrieved data in temporary variables
+        var productEntity: AProductType?
+        
+        // Define the query, which retrieve only the required properties, filtered on a certain product
+        let selectedProductQuery = QueryDefinitionHelper.initFilteredProductQuery(queryFilterForProductId: productId)
+        
+        self.queriesTerminated.enter()
+        
+        self.apiproductsrvEntities.fetchAProduct(matching: selectedProductQuery) { response, error in
+            guard let loadedEntity = response else {
                 completionHandler(error!)
                 return
             }
-            self.product = aSelectedDetailProduct.first!
+            productEntity = loadedEntity.first!
+            self.queriesTerminated.leave()
+        }
+        
+        self.queriesTerminated.notify(queue: .main) {
+            self.productEntity = productEntity
+            // Navigate to the Entities, which were expanded from the Product Entity
+            self.productDescriptionEntity = productEntity.map { $0.toDescription }
+            self.productPlantEntity = productEntity.map { $0.toPlant }
+            self.productSalesDeliveryEntity = productEntity.map { $0.toSalesDelivery }
+            
             self.initializeSections()
+            self.tableView.reloadData()
             completionHandler(nil)
         }
     }
@@ -344,10 +401,30 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
      *   Definition and initialization of the Views sections.
      */
     private func initializeSections() {
+        
+        // Product Details
         let section1: SectionHandler = SectionHandler(numberOfCells: self.propertiesForProduct.count, isSectionExpanded: true, delegate: self)
-        let section2: SectionHandler = SectionHandler(numberOfCells: (self.product?.toDescription.count)!, isSectionExpanded: false, delegate: self)
-        let section3: SectionHandler = SectionHandler(numberOfCells: (self.product?.toPlant.count)!, isSectionExpanded: false, delegate: self)
-        let section4: SectionHandler = SectionHandler(numberOfCells: (self.product?.toSalesDelivery.count)!, isSectionExpanded: false, delegate: self)
+        
+        // The other sections are collapsed by default and require for an aditional
+        // treatment, since they are based on loaded data from the backend (unchaining of an optional)
+        
+        // Descriptions for Product listed
+        var section2: SectionHandler = SectionHandler(numberOfCells: 0, isSectionExpanded: false, delegate: self)
+        // Plants for Product listed
+        var section3: SectionHandler = SectionHandler(numberOfCells: 0, isSectionExpanded: false, delegate: self)
+        // Sales for Product listed
+        var section4: SectionHandler = SectionHandler(numberOfCells: 0, isSectionExpanded: false, delegate: self)
+        
+        if let loadedProductDescriptionEntity = productDescriptionEntity {
+            section2 = SectionHandler(numberOfCells: (loadedProductDescriptionEntity.count), isSectionExpanded: false, delegate: self)
+        }
+
+        if let loadedProductPlantEntity = productPlantEntity {
+            section3 = SectionHandler(numberOfCells: (loadedProductPlantEntity.count), isSectionExpanded: false, delegate: self)
+        }
+        if let loadedProductSalesDeliveryEntity = productSalesDeliveryEntity {
+            section4 = SectionHandler(numberOfCells: (loadedProductSalesDeliveryEntity.count), isSectionExpanded: false, delegate: self)
+        }
         
         self.expandableSections = [section1, section2, section3, section4]
     }
@@ -370,7 +447,7 @@ class DetailViewController: UITableViewController, SAPFioriLoadingIndicator, Ref
         }
         return true
     }
-
+    
     // MARK: - Delegate on Section Button Pressed
     
     /**

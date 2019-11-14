@@ -11,7 +11,8 @@ class DescriptionDetailViewController: UITableViewController {
     // MARK: - UI Related Properties
     
     /**
-     *   Definition of the cells Re-User Identifiers from the Storyboard. This enum is used, to distinguish which cell type is required for which content.
+     *   Definition of the cells Re-User Identifiers from the Storyboard. This enum is used,
+     *   to distinguish which cell type is required for which content.
      */
     enum CellTypeForCellIdentifier: String {
         case simplePropertyForm = "SimpleDecriptionCell"
@@ -21,9 +22,15 @@ class DescriptionDetailViewController: UITableViewController {
     private let cellsHeight: CGFloat = 55
     private let descriptionCellHeight: CGFloat = 85
     
-    private let propertiesForDescriptionTable: [Int: [String: Property]] = [0: ["Product": AProductDescriptionType.product], 1: ["Language": AProductDescriptionType.language], 2: ["Description": AProductDescriptionType.productDescription]]
+    // Define the labeling and content of the cells
+    private let propertiesForDescriptionTable: [Int: [String: Property]] = [0: ["Product": AProductDescriptionType.product],
+                                                                            1: ["Language": AProductDescriptionType.language],
+                                                                            2: ["Description": AProductDescriptionType.productDescription]]
     
-    private let cellTypeForDescriptionProperty: [Int: CellTypeForCellIdentifier] = [0: .simplePropertyForm, 1: .simplePropertyForm, 2: .keyValueForm]
+    // Define the cells type
+    private let cellTypeForDescriptionProperty: [Int: CellTypeForCellIdentifier] = [0: .simplePropertyForm,
+                                                                                    1: .simplePropertyForm,
+                                                                                    2: .keyValueForm]
     
     // MARK: - Properties
     
@@ -34,7 +41,7 @@ class DescriptionDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.descriptionTableView.rowHeight = UITableViewAutomaticDimension
+        self.descriptionTableView.rowHeight = UITableView.automaticDimension
         self.descriptionTableView.estimatedRowHeight = cellsHeight
         
         self.tableView.backgroundColor = UIColor.groupTableViewBackground
@@ -74,11 +81,19 @@ class DescriptionDetailViewController: UITableViewController {
         
         switch cellTypeForDescriptionProperty[indexPath.row] {
         case .simplePropertyForm?:
-            return CustomCellCreator.createTextFieldFormCell(tableView, indexPath: indexPath, cellId: CellTypeForCellIdentifier.simplePropertyForm.rawValue, cellKeyName: keyName, cellValue: value)
+            return CellHelper.createTextFieldFormCell(tableView,
+                                                      indexPath: indexPath,
+                                                      cellId: CellTypeForCellIdentifier.simplePropertyForm.rawValue,
+                                                      cellKeyName: keyName,
+                                                      cellValue: value)
         case .keyValueForm?:
-            return CustomCellCreator.createKeyValueFormCell(tableView, indexPath: indexPath, cellId: CellTypeForCellIdentifier.keyValueForm.rawValue, cellKeyName: keyName, cellValue: value)
+            return CellHelper.createKeyValueFormCell(tableView,
+                                                     indexPath: indexPath,
+                                                     cellId: CellTypeForCellIdentifier.keyValueForm.rawValue,
+                                                     cellKeyName: keyName,
+                                                     cellValue: value)
         default:
-            print("Description cell creation fail")
+            print("Description cell creation failed")
         }
         // Return an empty cell
         return FUITextFieldFormCell()

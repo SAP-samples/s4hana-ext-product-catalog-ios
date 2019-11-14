@@ -1,10 +1,12 @@
-// # Proxy Compiler 18.9.4-973a4d-20181128
+// # Proxy Compiler 19.9.0-197466-20190927
 
 import Foundation
 import SAPOData
 
 public class APIPRODUCTSRVEntitiesMetadata {
     private static var document_: CSDLDocument = APIPRODUCTSRVEntitiesMetadata.resolve()
+
+    public static let lock: MetadataLock = MetadataLock()
 
     public static var document: CSDLDocument {
         get {
@@ -35,6 +37,10 @@ public class APIPRODUCTSRVEntitiesMetadata {
         private static var aProductDescriptionType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductDescriptionType")
 
         private static var aProductInspectionTextType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductInspectionTextType")
+
+        private static var aProductMLAccountType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductMLAccountType")
+
+        private static var aProductMLPricesType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductMLPricesType")
 
         private static var aProductPlantCostingType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductPlantCostingType")
 
@@ -81,6 +87,10 @@ public class APIPRODUCTSRVEntitiesMetadata {
         private static var aProductUnitsOfMeasureEANType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductUnitsOfMeasureEANType")
 
         private static var aProductUnitsOfMeasureType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductUnitsOfMeasureType")
+
+        private static var aProductValuationAccountType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductValuationAccountType")
+
+        private static var aProductValuationType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductValuationType")
 
         private static var aProductWorkSchedulingType_: EntityType = APIPRODUCTSRVEntitiesMetadataParser.parsed.entityType(withName: "API_PRODUCT_SRV.A_ProductWorkSchedulingType")
 
@@ -131,6 +141,40 @@ public class APIPRODUCTSRVEntitiesMetadata {
                 defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self) }
                 do {
                     APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductInspectionTextType_ = value
+                }
+            }
+        }
+
+        public static var aProductMLAccountType: EntityType {
+            get {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self) }
+                do {
+                    return APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductMLAccountType_
+                }
+            }
+            set(value) {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self) }
+                do {
+                    APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductMLAccountType_ = value
+                }
+            }
+        }
+
+        public static var aProductMLPricesType: EntityType {
+            get {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self) }
+                do {
+                    return APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductMLPricesType_
+                }
+            }
+            set(value) {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self) }
+                do {
+                    APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductMLPricesType_ = value
                 }
             }
         }
@@ -526,6 +570,40 @@ public class APIPRODUCTSRVEntitiesMetadata {
             }
         }
 
+        public static var aProductValuationAccountType: EntityType {
+            get {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self) }
+                do {
+                    return APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductValuationAccountType_
+                }
+            }
+            set(value) {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self) }
+                do {
+                    APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductValuationAccountType_ = value
+                }
+            }
+        }
+
+        public static var aProductValuationType: EntityType {
+            get {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self) }
+                do {
+                    return APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductValuationType_
+                }
+            }
+            set(value) {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self) }
+                do {
+                    APIPRODUCTSRVEntitiesMetadata.EntityTypes.aProductValuationType_ = value
+                }
+            }
+        }
+
         public static var aProductWorkSchedulingType: EntityType {
             get {
                 objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntityTypes.self)
@@ -552,6 +630,10 @@ public class APIPRODUCTSRVEntitiesMetadata {
         private static var aProductDescription_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductDescription")
 
         private static var aProductInspectionText_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductInspectionText")
+
+        private static var aProductMLAccount_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductMLAccount")
+
+        private static var aProductMLPrices_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductMLPrices")
 
         private static var aProductPlant_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductPlant")
 
@@ -596,6 +678,10 @@ public class APIPRODUCTSRVEntitiesMetadata {
         private static var aProductUnitsOfMeasure_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductUnitsOfMeasure")
 
         private static var aProductUnitsOfMeasureEAN_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductUnitsOfMeasureEAN")
+
+        private static var aProductValuation_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductValuation")
+
+        private static var aProductValuationAccount_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductValuationAccount")
 
         private static var aProductWorkScheduling_: EntitySet = APIPRODUCTSRVEntitiesMetadataParser.parsed.entitySet(withName: "A_ProductWorkScheduling")
 
@@ -663,6 +749,40 @@ public class APIPRODUCTSRVEntitiesMetadata {
                 defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
                 do {
                     APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductInspectionText_ = value
+                }
+            }
+        }
+
+        public static var aProductMLAccount: EntitySet {
+            get {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntitySets.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
+                do {
+                    return APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductMLAccount_
+                }
+            }
+            set(value) {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntitySets.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
+                do {
+                    APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductMLAccount_ = value
+                }
+            }
+        }
+
+        public static var aProductMLPrices: EntitySet {
+            get {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntitySets.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
+                do {
+                    return APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductMLPrices_
+                }
+            }
+            set(value) {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntitySets.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
+                do {
+                    APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductMLPrices_ = value
                 }
             }
         }
@@ -1037,6 +1157,40 @@ public class APIPRODUCTSRVEntitiesMetadata {
                 defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
                 do {
                     APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductUnitsOfMeasureEAN_ = value
+                }
+            }
+        }
+
+        public static var aProductValuation: EntitySet {
+            get {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntitySets.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
+                do {
+                    return APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductValuation_
+                }
+            }
+            set(value) {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntitySets.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
+                do {
+                    APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductValuation_ = value
+                }
+            }
+        }
+
+        public static var aProductValuationAccount: EntitySet {
+            get {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntitySets.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
+                do {
+                    return APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductValuationAccount_
+                }
+            }
+            set(value) {
+                objc_sync_enter(APIPRODUCTSRVEntitiesMetadata.EntitySets.self)
+                defer { objc_sync_exit(APIPRODUCTSRVEntitiesMetadata.EntitySets.self) }
+                do {
+                    APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductValuationAccount_ = value
                 }
             }
         }

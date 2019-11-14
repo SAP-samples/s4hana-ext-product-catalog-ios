@@ -7,65 +7,71 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		030EED6B444685DCE062ACBB /* AProductDescriptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8906CB38D781602A6A82FE0 /* AProductDescriptionType.swift */; };
 		1277F7611F8E66AF0060AF58 /* SAPLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1277F7601F8E66AC0060AF58 /* SAPLogo@2x.png */; };
-		128B53061F8E667000E64DF6 /* SnapshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128B53051F8E667000E64DF6 /* SnapshotViewController.swift */; };
-		12D066CF1F4DDB0E0075EBA4 /* ConfigurationProvider.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12D066CE1F4DDB0A0075EBA4 /* ConfigurationProvider.plist */; };
-		12E84FE51F4ECF220061C99E /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E84FDE1F4EBD460061C99E /* OnboardingManager.swift */; };
-		1C0BE1DCEBFF42619BA6BFD7 /* AProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DADEF4BE82CECE3D1527451 /* AProductType.swift */; };
-		1E4F7C20719C41B786FD9B19 /* APIPRODUCTSRVEntitiesMetadataChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5F17999D467D4A0414BC0 /* APIPRODUCTSRVEntitiesMetadataChanges.swift */; };
-		2F58C1D328A2F0D22E5CCDB8 /* AProductPlantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187FB37AB66256690F47BCEF /* AProductPlantType.swift */; };
-		4A38BB82316553D945C7B2AB /* AProductSalesDeliveryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3439425103FB45350CA1CA /* AProductSalesDeliveryType.swift */; };
-		57B31237937862CC66DE15C6 /* APIPRODUCTSRVEntitiesMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56640499295C89512D5D70E /* APIPRODUCTSRVEntitiesMetadata.swift */; };
-		5ED092625D99392AA9874357 /* APIPRODUCTSRVEntitiesMetadataText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55CDAA3A0A6BA0064581129 /* APIPRODUCTSRVEntitiesMetadataText.swift */; };
 		7A1315B91D4B982000A5DA56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1315B81D4B982000A5DA56 /* AppDelegate.swift */; };
 		7A1315C21D4B982000A5DA56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1315C11D4B982000A5DA56 /* Assets.xcassets */; };
 		7A1315C51D4B982000A5DA56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1315C31D4B982000A5DA56 /* LaunchScreen.storyboard */; };
 		7A16F06D1FD1B3C700D2FABD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7A16F06C1FD1B3C700D2FABD /* README.md */; };
-		7A26CA1C1F31BA8800B156B6 /* CellCreationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26CA1B1F31BA8800B156B6 /* CellCreationHelper.swift */; };
-		7A9F6FF61F3883D3000A1815 /* SAPFioriLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9F6FF51F3883D3000A1815 /* SAPFioriLoadingIndicator.swift */; };
-		A5A005398D6FFF3FADC351E0 /* APIPRODUCTSRVEntitiesMetadataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9266C1F27CB549BCAF34B9 /* APIPRODUCTSRVEntitiesMetadataParser.swift */; };
-		A8F1068743CDED9B712C9A41 /* APIPRODUCTSRVEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209E38655C7BF64A02DF2DE /* APIPRODUCTSRVEntities.swift */; };
-		ABA3A414D6F230DAFBAB532E /* APIPRODUCTSRVEntitiesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABAA40F22C46AA6C1C5DC46 /* APIPRODUCTSRVEntitiesFactory.swift */; };
-		B113A2532047FBA4009BB61F /* PlantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113A2522047FBA4009BB61F /* PlantDetailViewController.swift */; };
-		B113A2552047FBBB009BB61F /* SalesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113A2542047FBBB009BB61F /* SalesDetailViewController.swift */; };
-		B113A2572047FC1B009BB61F /* DescriptionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B113A2562047FC1B009BB61F /* DescriptionDetailViewController.swift */; };
-		B1430B3320289723009AFA40 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1430B3220289723009AFA40 /* MasterViewController.swift */; };
-		B1430B352028974B009AFA40 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1430B342028974B009AFA40 /* DetailViewController.swift */; };
-		B177C44A21F9E0E800B63FBE /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B177C44921F9E0E800B63FBE /* ServiceConfiguration.swift */; };
-		B18098BC204D3A970080673D /* CustomCellCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18098BB204D3A970080673D /* CustomCellCreator.swift */; };
-		B1D767E2205320750091AC8A /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D767E0205320750091AC8A /* SectionTableViewCell.swift */; };
-		B1D767E3205320750091AC8A /* SectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D767E1205320750091AC8A /* SectionTableViewCell.xib */; };
-		B1F4D73121F089FD003EA5A3 /* SAPCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72B21F089FC003EA5A3 /* SAPCommon.framework */; };
-		B1F4D73221F089FD003EA5A3 /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72B21F089FC003EA5A3 /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1F4D73321F089FD003EA5A3 /* SAPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72C21F089FC003EA5A3 /* SAPFoundation.framework */; };
-		B1F4D73421F089FD003EA5A3 /* SAPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72C21F089FC003EA5A3 /* SAPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1F4D73521F089FD003EA5A3 /* SAPOfflineOData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72D21F089FD003EA5A3 /* SAPOfflineOData.framework */; };
-		B1F4D73621F089FD003EA5A3 /* SAPOfflineOData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72D21F089FD003EA5A3 /* SAPOfflineOData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1F4D73721F089FD003EA5A3 /* SAPOData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72E21F089FD003EA5A3 /* SAPOData.framework */; };
-		B1F4D73821F089FD003EA5A3 /* SAPOData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72E21F089FD003EA5A3 /* SAPOData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1F4D73921F089FD003EA5A3 /* SAPFiori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72F21F089FD003EA5A3 /* SAPFiori.framework */; };
-		B1F4D73A21F089FD003EA5A3 /* SAPFiori.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D72F21F089FD003EA5A3 /* SAPFiori.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1F4D73B21F089FD003EA5A3 /* SAPFioriFlows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D73021F089FD003EA5A3 /* SAPFioriFlows.framework */; };
-		B1F4D73C21F089FD003EA5A3 /* SAPFioriFlows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4D73021F089FD003EA5A3 /* SAPFioriFlows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1FD79DD20518D57009290F7 /* SectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FD79DC20518D57009290F7 /* SectionHandler.swift */; };
-		B766293BC4DA9A46D2A4C8BC /* APIPRODUCTSRVEntitiesStaticResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FA2DCC726E5D04904029C9 /* APIPRODUCTSRVEntitiesStaticResolver.swift */; };
+		B10F6C17234DE2250093D953 /* QueryDefinitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F6C16234DE2250093D953 /* QueryDefinitionHelper.swift */; };
+		B11D55FB2327BB7600B7120C /* OnboardingErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D55F72327BB7600B7120C /* OnboardingErrorHandler.swift */; };
+		B11D55FC2327BB7600B7120C /* OnboardingFlowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D55F82327BB7600B7120C /* OnboardingFlowProvider.swift */; };
+		B11D55FD2327BB7600B7120C /* ApplicationUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D55F92327BB7600B7120C /* ApplicationUIManager.swift */; };
+		B11D55FE2327BB7600B7120C /* ConfigurationProvider.plist in Resources */ = {isa = PBXBuildFile; fileRef = B11D55FA2327BB7600B7120C /* ConfigurationProvider.plist */; };
+		B11D56022327CE1100B7120C /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D56012327CE1100B7120C /* AlertHelper.swift */; };
+		B11D56082327CE9B00B7120C /* SectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D56032327CE9B00B7120C /* SectionHandler.swift */; };
+		B11D56092327CE9B00B7120C /* SAPFioriLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D56042327CE9B00B7120C /* SAPFioriLoadingIndicator.swift */; };
+		B11D560A2327CE9B00B7120C /* CellHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D56052327CE9B00B7120C /* CellHelper.swift */; };
+		B11D560B2327CE9B00B7120C /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D56062327CE9B00B7120C /* ServiceConfiguration.swift */; };
+		B1B23112234376DA009CC3EB /* SAPFiori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2310C234376DA009CC3EB /* SAPFiori.framework */; };
+		B1B23116234376DA009CC3EB /* SAPOfflineOData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B23110234376DA009CC3EB /* SAPOfflineOData.framework */; };
+		B1B23117234376DA009CC3EB /* SAPCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B23111234376DA009CC3EB /* SAPCommon.framework */; };
+		B1B23119234376FE009CC3EB /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1B23111234376DA009CC3EB /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1B2311B234376FE009CC3EB /* SAPFiori.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2310C234376DA009CC3EB /* SAPFiori.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1B2311C234376FE009CC3EB /* SAPFioriFlows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2310D234376DA009CC3EB /* SAPFioriFlows.framework */; };
+		B1B2311D234376FE009CC3EB /* SAPFioriFlows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2310D234376DA009CC3EB /* SAPFioriFlows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1B2311E234376FE009CC3EB /* SAPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2310E234376DA009CC3EB /* SAPFoundation.framework */; };
+		B1B2311F234376FE009CC3EB /* SAPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2310E234376DA009CC3EB /* SAPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1B23120234376FE009CC3EB /* SAPOData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2310F234376DA009CC3EB /* SAPOData.framework */; };
+		B1B23121234376FE009CC3EB /* SAPOData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1B2310F234376DA009CC3EB /* SAPOData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1B23123234376FE009CC3EB /* SAPOfflineOData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1B23110234376DA009CC3EB /* SAPOfflineOData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1BC9CB72326487900E2D7E4 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC9CB62326487900E2D7E4 /* LocalizedStrings.swift */; };
+		B1C603C3232B85C0003D7749 /* APIPRODUCTSRVEntitiesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603BE232B85C0003D7749 /* APIPRODUCTSRVEntitiesFactory.swift */; };
+		B1C603C4232B85C0003D7749 /* APIPRODUCTSRVEntitiesStaticResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603BF232B85C0003D7749 /* APIPRODUCTSRVEntitiesStaticResolver.swift */; };
+		B1C603C5232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603C0232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataChanges.swift */; };
+		B1C603C6232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603C1232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataText.swift */; };
+		B1C603C7232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603C2232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataParser.swift */; };
+		B1C603CF232B85CE003D7749 /* AProductDescriptionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603C8232B85CE003D7749 /* AProductDescriptionType.swift */; };
+		B1C603D0232B85CE003D7749 /* APIPRODUCTSRVEntitiesMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603C9232B85CE003D7749 /* APIPRODUCTSRVEntitiesMetadata.swift */; };
+		B1C603D1232B85CE003D7749 /* AProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603CA232B85CE003D7749 /* AProductType.swift */; };
+		B1C603D2232B85CE003D7749 /* APIPRODUCTSRVEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603CB232B85CE003D7749 /* APIPRODUCTSRVEntities.swift */; };
+		B1C603D3232B85CE003D7749 /* AProductPlantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603CC232B85CE003D7749 /* AProductPlantType.swift */; };
+		B1C603D4232B85CE003D7749 /* AProductSalesDeliveryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603CD232B85CE003D7749 /* AProductSalesDeliveryType.swift */; };
+		B1C603D5232B85CE003D7749 /* AProductBasicTextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C603CE232B85CE003D7749 /* AProductBasicTextType.swift */; };
+		B1C6614E232FAC2100D31D6D /* SectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C66147232FAC2000D31D6D /* SectionTableViewCell.xib */; };
+		B1C6614F232FAC2100D31D6D /* DescriptionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C66148232FAC2000D31D6D /* DescriptionDetailViewController.swift */; };
+		B1C66150232FAC2100D31D6D /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C66149232FAC2000D31D6D /* SectionTableViewCell.swift */; };
+		B1C66151232FAC2100D31D6D /* SalesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6614A232FAC2100D31D6D /* SalesDetailViewController.swift */; };
+		B1C66152232FAC2100D31D6D /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6614B232FAC2100D31D6D /* MasterViewController.swift */; };
+		B1C66153232FAC2100D31D6D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6614C232FAC2100D31D6D /* DetailViewController.swift */; };
+		B1C66154232FAC2100D31D6D /* PlantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6614D232FAC2100D31D6D /* PlantDetailViewController.swift */; };
+		B1CB760D2344BDEB00A865F8 /* OfflineODataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB760B2344BDEB00A865F8 /* OfflineODataController.swift */; };
+		B1CB760E2344BDEB00A865F8 /* ODataOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CB760C2344BDEB00A865F8 /* ODataOnboardingStep.swift */; };
 		CBCA7A991E3778A9001AF49E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBCA7A9B1E3778A9001AF49E /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B1F4D73D21F089FD003EA5A3 /* Embed Frameworks */ = {
+		B1B23124234376FE009CC3EB /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B1F4D73421F089FD003EA5A3 /* SAPFoundation.framework in Embed Frameworks */,
-				B1F4D73C21F089FD003EA5A3 /* SAPFioriFlows.framework in Embed Frameworks */,
-				B1F4D73A21F089FD003EA5A3 /* SAPFiori.framework in Embed Frameworks */,
-				B1F4D73221F089FD003EA5A3 /* SAPCommon.framework in Embed Frameworks */,
-				B1F4D73621F089FD003EA5A3 /* SAPOfflineOData.framework in Embed Frameworks */,
-				B1F4D73821F089FD003EA5A3 /* SAPOData.framework in Embed Frameworks */,
+				B1B23119234376FE009CC3EB /* SAPCommon.framework in Embed Frameworks */,
+				B1B2311D234376FE009CC3EB /* SAPFioriFlows.framework in Embed Frameworks */,
+				B1B23121234376FE009CC3EB /* SAPOData.framework in Embed Frameworks */,
+				B1B2311F234376FE009CC3EB /* SAPFoundation.framework in Embed Frameworks */,
+				B1B2311B234376FE009CC3EB /* SAPFiori.framework in Embed Frameworks */,
+				B1B23123234376FE009CC3EB /* SAPOfflineOData.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,51 +80,51 @@
 
 /* Begin PBXFileReference section */
 		1277F7601F8E66AC0060AF58 /* SAPLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SAPLogo@2x.png"; sourceTree = "<group>"; };
-		128B53051F8E667000E64DF6 /* SnapshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotViewController.swift; sourceTree = "<group>"; };
-		12D066CE1F4DDB0A0075EBA4 /* ConfigurationProvider.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ConfigurationProvider.plist; sourceTree = "<group>"; };
-		12E84FDE1F4EBD460061C99E /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
-		187FB37AB66256690F47BCEF /* AProductPlantType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AProductPlantType.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/AProductPlantType.swift"; sourceTree = "<group>"; };
-		6E9266C1F27CB549BCAF34B9 /* APIPRODUCTSRVEntitiesMetadataParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesMetadataParser.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesMetadataParser.swift"; sourceTree = "<group>"; };
-		7A1315B51D4B982000A5DA56 /* productmasterapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = productmasterapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A1315B51D4B982000A5DA56 /* Product Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Product Master.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A1315B81D4B982000A5DA56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A1315C11D4B982000A5DA56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A1315C41D4B982000A5DA56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A1315C61D4B982000A5DA56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A16F06C1FD1B3C700D2FABD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7A26CA1B1F31BA8800B156B6 /* CellCreationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellCreationHelper.swift; sourceTree = "<group>"; };
-		7A9F6FF51F3883D3000A1815 /* SAPFioriLoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAPFioriLoadingIndicator.swift; sourceTree = "<group>"; };
-		81E5F17999D467D4A0414BC0 /* APIPRODUCTSRVEntitiesMetadataChanges.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesMetadataChanges.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesMetadataChanges.swift"; sourceTree = "<group>"; };
-		8DADEF4BE82CECE3D1527451 /* AProductType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AProductType.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/AProductType.swift"; sourceTree = "<group>"; };
-		A8906CB38D781602A6A82FE0 /* AProductDescriptionType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AProductDescriptionType.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/AProductDescriptionType.swift"; sourceTree = "<group>"; };
-		B113A2522047FBA4009BB61F /* PlantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantDetailViewController.swift; sourceTree = "<group>"; };
-		B113A2542047FBBB009BB61F /* SalesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailViewController.swift; sourceTree = "<group>"; };
-		B113A2562047FC1B009BB61F /* DescriptionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionDetailViewController.swift; sourceTree = "<group>"; };
-		B1430B3220289723009AFA40 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		B1430B342028974B009AFA40 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		B177C44921F9E0E800B63FBE /* ServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
-		B18098BB204D3A970080673D /* CustomCellCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellCreator.swift; sourceTree = "<group>"; };
-		B1D767E0205320750091AC8A /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
-		B1D767E1205320750091AC8A /* SectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionTableViewCell.xib; sourceTree = "<group>"; };
-		B1EA9184208DD827004AD872 /* SAPOfflineOData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPOfflineOData.framework; sourceTree = "<group>"; };
-		B1EA9185208DD828004AD872 /* SAPFioriFlows.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFioriFlows.framework; sourceTree = "<group>"; };
-		B1EA9186208DD828004AD872 /* SAPOData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPOData.framework; sourceTree = "<group>"; };
-		B1EA9187208DD828004AD872 /* SAPFiori.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFiori.framework; sourceTree = "<group>"; };
-		B1EA9188208DD828004AD872 /* SAPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFoundation.framework; sourceTree = "<group>"; };
-		B1EA9189208DD828004AD872 /* SAPCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPCommon.framework; sourceTree = "<group>"; };
-		B1F4D72B21F089FC003EA5A3 /* SAPCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPCommon.framework; sourceTree = "<group>"; };
-		B1F4D72C21F089FC003EA5A3 /* SAPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFoundation.framework; sourceTree = "<group>"; };
-		B1F4D72D21F089FD003EA5A3 /* SAPOfflineOData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPOfflineOData.framework; sourceTree = "<group>"; };
-		B1F4D72E21F089FD003EA5A3 /* SAPOData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPOData.framework; sourceTree = "<group>"; };
-		B1F4D72F21F089FD003EA5A3 /* SAPFiori.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFiori.framework; sourceTree = "<group>"; };
-		B1F4D73021F089FD003EA5A3 /* SAPFioriFlows.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFioriFlows.framework; sourceTree = "<group>"; };
-		B1FD79DC20518D57009290F7 /* SectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHandler.swift; sourceTree = "<group>"; };
-		C55CDAA3A0A6BA0064581129 /* APIPRODUCTSRVEntitiesMetadataText.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesMetadataText.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesMetadataText.swift"; sourceTree = "<group>"; };
-		C56640499295C89512D5D70E /* APIPRODUCTSRVEntitiesMetadata.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesMetadata.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/APIPRODUCTSRVEntitiesMetadata.swift"; sourceTree = "<group>"; };
+		B10F6C16234DE2250093D953 /* QueryDefinitionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QueryDefinitionHelper.swift; path = Utils/QueryDefinitionHelper.swift; sourceTree = "<group>"; };
+		B11D55F72327BB7600B7120C /* OnboardingErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingErrorHandler.swift; path = Onboarding/OnboardingErrorHandler.swift; sourceTree = "<group>"; };
+		B11D55F82327BB7600B7120C /* OnboardingFlowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingFlowProvider.swift; path = Onboarding/OnboardingFlowProvider.swift; sourceTree = "<group>"; };
+		B11D55F92327BB7600B7120C /* ApplicationUIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationUIManager.swift; path = Onboarding/ApplicationUIManager.swift; sourceTree = "<group>"; };
+		B11D55FA2327BB7600B7120C /* ConfigurationProvider.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ConfigurationProvider.plist; path = Onboarding/ConfigurationProvider.plist; sourceTree = "<group>"; };
+		B11D56012327CE1100B7120C /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertHelper.swift; path = Utils/AlertHelper.swift; sourceTree = "<group>"; };
+		B11D56032327CE9B00B7120C /* SectionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionHandler.swift; path = Utils/SectionHandler.swift; sourceTree = "<group>"; };
+		B11D56042327CE9B00B7120C /* SAPFioriLoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SAPFioriLoadingIndicator.swift; path = Utils/SAPFioriLoadingIndicator.swift; sourceTree = "<group>"; };
+		B11D56052327CE9B00B7120C /* CellHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellHelper.swift; path = Utils/CellHelper.swift; sourceTree = "<group>"; };
+		B11D56062327CE9B00B7120C /* ServiceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceConfiguration.swift; path = Utils/ServiceConfiguration.swift; sourceTree = "<group>"; };
+		B1B2310C234376DA009CC3EB /* SAPFiori.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFiori.framework; sourceTree = "<group>"; };
+		B1B2310D234376DA009CC3EB /* SAPFioriFlows.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFioriFlows.framework; sourceTree = "<group>"; };
+		B1B2310E234376DA009CC3EB /* SAPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFoundation.framework; sourceTree = "<group>"; };
+		B1B2310F234376DA009CC3EB /* SAPOData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPOData.framework; sourceTree = "<group>"; };
+		B1B23110234376DA009CC3EB /* SAPOfflineOData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPOfflineOData.framework; sourceTree = "<group>"; };
+		B1B23111234376DA009CC3EB /* SAPCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPCommon.framework; sourceTree = "<group>"; };
+		B1BC9CB62326487900E2D7E4 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
+		B1C603BE232B85C0003D7749 /* APIPRODUCTSRVEntitiesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesFactory.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesFactory.swift"; sourceTree = "<group>"; };
+		B1C603BF232B85C0003D7749 /* APIPRODUCTSRVEntitiesStaticResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesStaticResolver.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesStaticResolver.swift"; sourceTree = "<group>"; };
+		B1C603C0232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataChanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesMetadataChanges.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesMetadataChanges.swift"; sourceTree = "<group>"; };
+		B1C603C1232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesMetadataText.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesMetadataText.swift"; sourceTree = "<group>"; };
+		B1C603C2232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesMetadataParser.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesMetadataParser.swift"; sourceTree = "<group>"; };
+		B1C603C8232B85CE003D7749 /* AProductDescriptionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AProductDescriptionType.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/AProductDescriptionType.swift"; sourceTree = "<group>"; };
+		B1C603C9232B85CE003D7749 /* APIPRODUCTSRVEntitiesMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesMetadata.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/APIPRODUCTSRVEntitiesMetadata.swift"; sourceTree = "<group>"; };
+		B1C603CA232B85CE003D7749 /* AProductType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AProductType.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/AProductType.swift"; sourceTree = "<group>"; };
+		B1C603CB232B85CE003D7749 /* APIPRODUCTSRVEntities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntities.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/APIPRODUCTSRVEntities.swift"; sourceTree = "<group>"; };
+		B1C603CC232B85CE003D7749 /* AProductPlantType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AProductPlantType.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/AProductPlantType.swift"; sourceTree = "<group>"; };
+		B1C603CD232B85CE003D7749 /* AProductSalesDeliveryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AProductSalesDeliveryType.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/AProductSalesDeliveryType.swift"; sourceTree = "<group>"; };
+		B1C603CE232B85CE003D7749 /* AProductBasicTextType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AProductBasicTextType.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/AProductBasicTextType.swift"; sourceTree = "<group>"; };
+		B1C66147232FAC2000D31D6D /* SectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SectionTableViewCell.xib; path = ViewControllers/SectionTableViewCell.xib; sourceTree = "<group>"; };
+		B1C66148232FAC2000D31D6D /* DescriptionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DescriptionDetailViewController.swift; path = ViewControllers/DescriptionDetailViewController.swift; sourceTree = "<group>"; };
+		B1C66149232FAC2000D31D6D /* SectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionTableViewCell.swift; path = ViewControllers/SectionTableViewCell.swift; sourceTree = "<group>"; };
+		B1C6614A232FAC2100D31D6D /* SalesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SalesDetailViewController.swift; path = ViewControllers/SalesDetailViewController.swift; sourceTree = "<group>"; };
+		B1C6614B232FAC2100D31D6D /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MasterViewController.swift; path = ViewControllers/MasterViewController.swift; sourceTree = "<group>"; };
+		B1C6614C232FAC2100D31D6D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = ViewControllers/DetailViewController.swift; sourceTree = "<group>"; };
+		B1C6614D232FAC2100D31D6D /* PlantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlantDetailViewController.swift; path = ViewControllers/PlantDetailViewController.swift; sourceTree = "<group>"; };
+		B1CB760B2344BDEB00A865F8 /* OfflineODataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OfflineODataController.swift; path = OData/OfflineODataController.swift; sourceTree = "<group>"; };
+		B1CB760C2344BDEB00A865F8 /* ODataOnboardingStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ODataOnboardingStep.swift; path = OData/ODataOnboardingStep.swift; sourceTree = "<group>"; };
 		CB909D801E38CA8800218154 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DABAA40F22C46AA6C1C5DC46 /* APIPRODUCTSRVEntitiesFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesFactory.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesFactory.swift"; sourceTree = "<group>"; };
-		EB3439425103FB45350CA1CA /* AProductSalesDeliveryType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AProductSalesDeliveryType.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/AProductSalesDeliveryType.swift"; sourceTree = "<group>"; };
-		F209E38655C7BF64A02DF2DE /* APIPRODUCTSRVEntities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntities.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/public/APIPRODUCTSRVEntities.swift"; sourceTree = "<group>"; };
-		F7FA2DCC726E5D04904029C9 /* APIPRODUCTSRVEntitiesStaticResolver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIPRODUCTSRVEntitiesStaticResolver.swift; path = "Proxy Classes/com.sap.bp.productmasterapp/internal/APIPRODUCTSRVEntitiesStaticResolver.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,12 +132,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1F4D73321F089FD003EA5A3 /* SAPFoundation.framework in Frameworks */,
-				B1F4D73B21F089FD003EA5A3 /* SAPFioriFlows.framework in Frameworks */,
-				B1F4D73921F089FD003EA5A3 /* SAPFiori.framework in Frameworks */,
-				B1F4D73121F089FD003EA5A3 /* SAPCommon.framework in Frameworks */,
-				B1F4D73521F089FD003EA5A3 /* SAPOfflineOData.framework in Frameworks */,
-				B1F4D73721F089FD003EA5A3 /* SAPOData.framework in Frameworks */,
+				B1B2311E234376FE009CC3EB /* SAPFoundation.framework in Frameworks */,
+				B1B23112234376DA009CC3EB /* SAPFiori.framework in Frameworks */,
+				B1B23120234376FE009CC3EB /* SAPOData.framework in Frameworks */,
+				B1B23116234376DA009CC3EB /* SAPOfflineOData.framework in Frameworks */,
+				B1B2311C234376FE009CC3EB /* SAPFioriFlows.framework in Frameworks */,
+				B1B23117234376DA009CC3EB /* SAPCommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,8 +147,10 @@
 		12D066CB1F4DDAE40075EBA4 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				12D066CE1F4DDB0A0075EBA4 /* ConfigurationProvider.plist */,
-				12E84FDE1F4EBD460061C99E /* OnboardingManager.swift */,
+				B11D55F92327BB7600B7120C /* ApplicationUIManager.swift */,
+				B11D55FA2327BB7600B7120C /* ConfigurationProvider.plist */,
+				B11D55F72327BB7600B7120C /* OnboardingErrorHandler.swift */,
+				B11D55F82327BB7600B7120C /* OnboardingFlowProvider.swift */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -150,12 +158,13 @@
 		1739BDC41B0B25CC4433CC60 /* public */ = {
 			isa = PBXGroup;
 			children = (
-				C56640499295C89512D5D70E /* APIPRODUCTSRVEntitiesMetadata.swift */,
-				187FB37AB66256690F47BCEF /* AProductPlantType.swift */,
-				EB3439425103FB45350CA1CA /* AProductSalesDeliveryType.swift */,
-				F209E38655C7BF64A02DF2DE /* APIPRODUCTSRVEntities.swift */,
-				8DADEF4BE82CECE3D1527451 /* AProductType.swift */,
-				A8906CB38D781602A6A82FE0 /* AProductDescriptionType.swift */,
+				B1C603CB232B85CE003D7749 /* APIPRODUCTSRVEntities.swift */,
+				B1C603C9232B85CE003D7749 /* APIPRODUCTSRVEntitiesMetadata.swift */,
+				B1C603CE232B85CE003D7749 /* AProductBasicTextType.swift */,
+				B1C603C8232B85CE003D7749 /* AProductDescriptionType.swift */,
+				B1C603CC232B85CE003D7749 /* AProductPlantType.swift */,
+				B1C603CD232B85CE003D7749 /* AProductSalesDeliveryType.swift */,
+				B1C603CA232B85CE003D7749 /* AProductType.swift */,
 			);
 			name = public;
 			sourceTree = "<group>";
@@ -163,11 +172,11 @@
 		2A2FB7503C6DF6A69F707993 /* internal */ = {
 			isa = PBXGroup;
 			children = (
-				6E9266C1F27CB549BCAF34B9 /* APIPRODUCTSRVEntitiesMetadataParser.swift */,
-				81E5F17999D467D4A0414BC0 /* APIPRODUCTSRVEntitiesMetadataChanges.swift */,
-				DABAA40F22C46AA6C1C5DC46 /* APIPRODUCTSRVEntitiesFactory.swift */,
-				F7FA2DCC726E5D04904029C9 /* APIPRODUCTSRVEntitiesStaticResolver.swift */,
-				C55CDAA3A0A6BA0064581129 /* APIPRODUCTSRVEntitiesMetadataText.swift */,
+				B1C603BE232B85C0003D7749 /* APIPRODUCTSRVEntitiesFactory.swift */,
+				B1C603C0232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataChanges.swift */,
+				B1C603C2232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataParser.swift */,
+				B1C603C1232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataText.swift */,
+				B1C603BF232B85C0003D7749 /* APIPRODUCTSRVEntitiesStaticResolver.swift */,
 			);
 			name = internal;
 			sourceTree = "<group>";
@@ -175,11 +184,12 @@
 		755C10B41D5C63B000ECF6A2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7A9F6FF51F3883D3000A1815 /* SAPFioriLoadingIndicator.swift */,
-				7A26CA1B1F31BA8800B156B6 /* CellCreationHelper.swift */,
-				B18098BB204D3A970080673D /* CustomCellCreator.swift */,
-				B1FD79DC20518D57009290F7 /* SectionHandler.swift */,
-				B177C44921F9E0E800B63FBE /* ServiceConfiguration.swift */,
+				B11D56012327CE1100B7120C /* AlertHelper.swift */,
+				B11D56052327CE9B00B7120C /* CellHelper.swift */,
+				B11D56042327CE9B00B7120C /* SAPFioriLoadingIndicator.swift */,
+				B11D56032327CE9B00B7120C /* SectionHandler.swift */,
+				B11D56062327CE9B00B7120C /* ServiceConfiguration.swift */,
+				B10F6C16234DE2250093D953 /* QueryDefinitionHelper.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -187,14 +197,13 @@
 		75AC42C81DAF80C000B445FF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				128B53051F8E667000E64DF6 /* SnapshotViewController.swift */,
-				B1430B3220289723009AFA40 /* MasterViewController.swift */,
-				B1430B342028974B009AFA40 /* DetailViewController.swift */,
-				B113A2562047FC1B009BB61F /* DescriptionDetailViewController.swift */,
-				B113A2522047FBA4009BB61F /* PlantDetailViewController.swift */,
-				B113A2542047FBBB009BB61F /* SalesDetailViewController.swift */,
-				75D373EF1DD1FB0800888D4C /* Proxy Classes */,
-				B1D767E0205320750091AC8A /* SectionTableViewCell.swift */,
+				B1C6614B232FAC2100D31D6D /* MasterViewController.swift */,
+				B1C6614C232FAC2100D31D6D /* DetailViewController.swift */,
+				B1C66148232FAC2000D31D6D /* DescriptionDetailViewController.swift */,
+				B1C6614D232FAC2100D31D6D /* PlantDetailViewController.swift */,
+				B1C6614A232FAC2100D31D6D /* SalesDetailViewController.swift */,
+				B1C66149232FAC2000D31D6D /* SectionTableViewCell.swift */,
+				B1C66147232FAC2000D31D6D /* SectionTableViewCell.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -221,7 +230,7 @@
 		7A1315B61D4B982000A5DA56 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7A1315B51D4B982000A5DA56 /* productmasterapp.app */,
+				7A1315B51D4B982000A5DA56 /* Product Master.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,16 +238,18 @@
 		7A1315B71D4B982000A5DA56 /* productmasterapp */ = {
 			isa = PBXGroup;
 			children = (
+				B11D55F22327A0B400B7120C /* OData */,
 				12D066CB1F4DDAE40075EBA4 /* Onboarding */,
 				75AC42C81DAF80C000B445FF /* ViewControllers */,
+				75D373EF1DD1FB0800888D4C /* Proxy Classes */,
 				755C10B41D5C63B000ECF6A2 /* Utils */,
 				7A1315B81D4B982000A5DA56 /* AppDelegate.swift */,
+				B1BC9CB62326487900E2D7E4 /* LocalizedStrings.swift */,
 				CBCA7A9B1E3778A9001AF49E /* Main.storyboard */,
 				7A1315C11D4B982000A5DA56 /* Assets.xcassets */,
 				7A1315C31D4B982000A5DA56 /* LaunchScreen.storyboard */,
 				1277F7601F8E66AC0060AF58 /* SAPLogo@2x.png */,
 				7A1315C61D4B982000A5DA56 /* Info.plist */,
-				B1D767E1205320750091AC8A /* SectionTableViewCell.xib */,
 			);
 			path = productmasterapp;
 			sourceTree = "<group>";
@@ -246,20 +257,23 @@
 		7A1315CC1D4B990B00A5DA56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1F4D72B21F089FC003EA5A3 /* SAPCommon.framework */,
-				B1F4D72F21F089FD003EA5A3 /* SAPFiori.framework */,
-				B1F4D73021F089FD003EA5A3 /* SAPFioriFlows.framework */,
-				B1F4D72C21F089FC003EA5A3 /* SAPFoundation.framework */,
-				B1F4D72E21F089FD003EA5A3 /* SAPOData.framework */,
-				B1F4D72D21F089FD003EA5A3 /* SAPOfflineOData.framework */,
-				B1EA9189208DD828004AD872 /* SAPCommon.framework */,
-				B1EA9187208DD828004AD872 /* SAPFiori.framework */,
-				B1EA9185208DD828004AD872 /* SAPFioriFlows.framework */,
-				B1EA9188208DD828004AD872 /* SAPFoundation.framework */,
-				B1EA9186208DD828004AD872 /* SAPOData.framework */,
-				B1EA9184208DD827004AD872 /* SAPOfflineOData.framework */,
+				B1B23111234376DA009CC3EB /* SAPCommon.framework */,
+				B1B2310C234376DA009CC3EB /* SAPFiori.framework */,
+				B1B2310D234376DA009CC3EB /* SAPFioriFlows.framework */,
+				B1B2310E234376DA009CC3EB /* SAPFoundation.framework */,
+				B1B2310F234376DA009CC3EB /* SAPOData.framework */,
+				B1B23110234376DA009CC3EB /* SAPOfflineOData.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B11D55F22327A0B400B7120C /* OData */ = {
+			isa = PBXGroup;
+			children = (
+				B1CB760C2344BDEB00A865F8 /* ODataOnboardingStep.swift */,
+				B1CB760B2344BDEB00A865F8 /* OfflineODataController.swift */,
+			);
+			name = OData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,7 +286,7 @@
 				7A1315B11D4B982000A5DA56 /* Sources */,
 				7A1315B21D4B982000A5DA56 /* Frameworks */,
 				7A1315B31D4B982000A5DA56 /* Resources */,
-				B1F4D73D21F089FD003EA5A3 /* Embed Frameworks */,
+				B1B23124234376FE009CC3EB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -280,7 +294,7 @@
 			);
 			name = productmasterapp;
 			productName = productmasterapp;
-			productReference = 7A1315B51D4B982000A5DA56 /* productmasterapp.app */;
+			productReference = 7A1315B51D4B982000A5DA56 /* Product Master.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -290,7 +304,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = SAP;
 				TargetAttributes = {
 					7A1315B41D4B982000A5DA56 = {
@@ -302,7 +316,7 @@
 			};
 			buildConfigurationList = 7A1315B01D4B982000A5DA56 /* Build configuration list for PBXProject "productmasterapp" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -323,13 +337,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1D767E3205320750091AC8A /* SectionTableViewCell.xib in Resources */,
 				7A16F06D1FD1B3C700D2FABD /* README.md in Resources */,
+				B11D55FE2327BB7600B7120C /* ConfigurationProvider.plist in Resources */,
 				7A1315C51D4B982000A5DA56 /* LaunchScreen.storyboard in Resources */,
-				12D066CF1F4DDB0E0075EBA4 /* ConfigurationProvider.plist in Resources */,
 				7A1315C21D4B982000A5DA56 /* Assets.xcassets in Resources */,
 				CBCA7A991E3778A9001AF49E /* Main.storyboard in Resources */,
 				1277F7611F8E66AF0060AF58 /* SAPLogo@2x.png in Resources */,
+				B1C6614E232FAC2100D31D6D /* SectionTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,31 +354,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				128B53061F8E667000E64DF6 /* SnapshotViewController.swift in Sources */,
-				12E84FE51F4ECF220061C99E /* OnboardingManager.swift in Sources */,
-				B1430B352028974B009AFA40 /* DetailViewController.swift in Sources */,
-				B1D767E2205320750091AC8A /* SectionTableViewCell.swift in Sources */,
-				B1430B3320289723009AFA40 /* MasterViewController.swift in Sources */,
-				7A9F6FF61F3883D3000A1815 /* SAPFioriLoadingIndicator.swift in Sources */,
-				7A26CA1C1F31BA8800B156B6 /* CellCreationHelper.swift in Sources */,
+				B1C66151232FAC2100D31D6D /* SalesDetailViewController.swift in Sources */,
+				B1C603CF232B85CE003D7749 /* AProductDescriptionType.swift in Sources */,
+				B11D56082327CE9B00B7120C /* SectionHandler.swift in Sources */,
+				B1C603D5232B85CE003D7749 /* AProductBasicTextType.swift in Sources */,
+				B1C603C4232B85C0003D7749 /* APIPRODUCTSRVEntitiesStaticResolver.swift in Sources */,
+				B1C603D1232B85CE003D7749 /* AProductType.swift in Sources */,
 				7A1315B91D4B982000A5DA56 /* AppDelegate.swift in Sources */,
-				A5A005398D6FFF3FADC351E0 /* APIPRODUCTSRVEntitiesMetadataParser.swift in Sources */,
-				B113A2532047FBA4009BB61F /* PlantDetailViewController.swift in Sources */,
-				1E4F7C20719C41B786FD9B19 /* APIPRODUCTSRVEntitiesMetadataChanges.swift in Sources */,
-				ABA3A414D6F230DAFBAB532E /* APIPRODUCTSRVEntitiesFactory.swift in Sources */,
-				B766293BC4DA9A46D2A4C8BC /* APIPRODUCTSRVEntitiesStaticResolver.swift in Sources */,
-				5ED092625D99392AA9874357 /* APIPRODUCTSRVEntitiesMetadataText.swift in Sources */,
-				B177C44A21F9E0E800B63FBE /* ServiceConfiguration.swift in Sources */,
-				57B31237937862CC66DE15C6 /* APIPRODUCTSRVEntitiesMetadata.swift in Sources */,
-				B1FD79DD20518D57009290F7 /* SectionHandler.swift in Sources */,
-				2F58C1D328A2F0D22E5CCDB8 /* AProductPlantType.swift in Sources */,
-				4A38BB82316553D945C7B2AB /* AProductSalesDeliveryType.swift in Sources */,
-				A8F1068743CDED9B712C9A41 /* APIPRODUCTSRVEntities.swift in Sources */,
-				1C0BE1DCEBFF42619BA6BFD7 /* AProductType.swift in Sources */,
-				B113A2552047FBBB009BB61F /* SalesDetailViewController.swift in Sources */,
-				B113A2572047FC1B009BB61F /* DescriptionDetailViewController.swift in Sources */,
-				B18098BC204D3A970080673D /* CustomCellCreator.swift in Sources */,
-				030EED6B444685DCE062ACBB /* AProductDescriptionType.swift in Sources */,
+				B1C66150232FAC2100D31D6D /* SectionTableViewCell.swift in Sources */,
+				B1C603D3232B85CE003D7749 /* AProductPlantType.swift in Sources */,
+				B1C603D0232B85CE003D7749 /* APIPRODUCTSRVEntitiesMetadata.swift in Sources */,
+				B1C66152232FAC2100D31D6D /* MasterViewController.swift in Sources */,
+				B1C603D4232B85CE003D7749 /* AProductSalesDeliveryType.swift in Sources */,
+				B1C603D2232B85CE003D7749 /* APIPRODUCTSRVEntities.swift in Sources */,
+				B1C603C6232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataText.swift in Sources */,
+				B11D56092327CE9B00B7120C /* SAPFioriLoadingIndicator.swift in Sources */,
+				B11D560B2327CE9B00B7120C /* ServiceConfiguration.swift in Sources */,
+				B1C603C3232B85C0003D7749 /* APIPRODUCTSRVEntitiesFactory.swift in Sources */,
+				B1C603C5232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataChanges.swift in Sources */,
+				B11D55FC2327BB7600B7120C /* OnboardingFlowProvider.swift in Sources */,
+				B1CB760D2344BDEB00A865F8 /* OfflineODataController.swift in Sources */,
+				B10F6C17234DE2250093D953 /* QueryDefinitionHelper.swift in Sources */,
+				B11D56022327CE1100B7120C /* AlertHelper.swift in Sources */,
+				B1BC9CB72326487900E2D7E4 /* LocalizedStrings.swift in Sources */,
+				B11D55FD2327BB7600B7120C /* ApplicationUIManager.swift in Sources */,
+				B1C66154232FAC2100D31D6D /* PlantDetailViewController.swift in Sources */,
+				B11D560A2327CE9B00B7120C /* CellHelper.swift in Sources */,
+				B1CB760E2344BDEB00A865F8 /* ODataOnboardingStep.swift in Sources */,
+				B11D55FB2327BB7600B7120C /* OnboardingErrorHandler.swift in Sources */,
+				B1C66153232FAC2100D31D6D /* DetailViewController.swift in Sources */,
+				B1C6614F232FAC2100D31D6D /* DescriptionDetailViewController.swift in Sources */,
+				B1C603C7232B85C0003D7749 /* APIPRODUCTSRVEntitiesMetadataParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +414,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -445,7 +466,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -454,6 +475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -497,7 +519,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -517,12 +539,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = productmasterapp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sap.bp.productmasterapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Product Master";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -540,12 +562,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = productmasterapp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sap.bp.productmasterapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Product Master";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
