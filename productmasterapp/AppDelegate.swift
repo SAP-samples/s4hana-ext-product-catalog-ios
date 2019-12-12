@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         self.initializeOnboarding()
         ConnectivityReceiver.registerObserver(self)
         
-        UINavigationBar.applyFioriStyle()
+        UINavigationBar().applyFioriStyle()
         
         return true
     }
