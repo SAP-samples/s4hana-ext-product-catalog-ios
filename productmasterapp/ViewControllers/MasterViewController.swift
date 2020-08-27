@@ -254,6 +254,9 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator {
         var loadedProducts = [AProductType]()
         var loadedDescriptions = [AProductDescriptionType]()
         
+        // An default object, which is used in case there is no data available
+        let emptyProdDescr: AProductDescriptionType = AProductDescriptionType()
+        
         // Define the queries, which retrieve only the required properties
         let productQuery = QueryDefinitionHelper.initProductMainViewQuery()
 
@@ -275,13 +278,15 @@ class MasterViewController: UITableViewController, SAPFioriLoadingIndicator {
             
             // Extract per Product a certain description for a Language
             let extractedDescriptions: [[AProductDescriptionType]] = loadedProducts.map { $0.toDescription.filter {$0.language == self.productDescriptionLanguage}}
-            extractedDescriptions.forEach {description in loadedDescriptions.append(description.first!) }
+            // Assigns descriptions to products, in case there is no description, a default is assigned
+            extractedDescriptions.forEach {description in loadedDescriptions.append(description.first ?? emptyProdDescr) }
             
             self.products = loadedProducts
             self.descriptions = loadedDescriptions
 
             self.tableView.reloadData()
             completionHandler(nil)
+            
         }
     }
     

@@ -45,3 +45,5 @@ SAPCommon.framework/
 SAPOData.framework/
 *.framework/
 *.framework/*
+*.xcframework
+*.xcframework/*

@@ -17,15 +17,15 @@ public class OfflineODataController {
         case cannotCreateOfflinePath
         case storeClosed
     }
-
+    
     private let logger = Logger.shared(named: "OfflineODataController")
     var apiproductsrvEntities: APIPRODUCTSRVEntities<OfflineODataProvider>!
     private(set) var isOfflineStoreOpened = false
-
+    
     public init() {}
-
+    
     // MARK: - Public methods
-
+    
     public static func offlineStorePath(for onboardingID: UUID) throws -> URL {
         guard let documentsFolderURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first else {
             throw OfflineODataControllerError.cannotCreateOfflinePath
@@ -33,22 +33,22 @@ public class OfflineODataController {
         let offlineStoreURL = documentsFolderURL.appendingPathComponent(onboardingID.uuidString)
         return offlineStoreURL
     }
-
+    
     public static func removeStore(for onboardingID: UUID) throws {
         let offlinePath = try offlineStorePath(for: onboardingID)
         try OfflineODataProvider.clear(at: offlinePath, withName: nil)
     }
-
+    
     // Read more about setting up an application with Offline Store: https://help.sap.com/viewer/fc1a59c210d848babfb3f758a6f55cb1/Latest/en-US/92f0a91d9d3148fd98b86082cf2cb1d5.html
     public func configureOData(sapURLSession: SAPURLSession, serviceRoot: URL, onboardingID: UUID) throws {
-        var offlineParameters = OfflineODataParameters()
+        let offlineParameters = OfflineODataParameters()
         offlineParameters.enableRepeatableRequests = true
-
+        
         // Configure the path of the Offline Store
         let offlinePath = try OfflineODataController.offlineStorePath(for: onboardingID)
         try FileManager.default.createDirectory(at: offlinePath, withIntermediateDirectories: true)
         offlineParameters.storePath = offlinePath
-
+        
         // Setup an instance of delegate. See sample code below for definition of OfflineODataDelegateSample class.
         let delegate = OfflineODataDelegateSample()
         let offlineODataProvider = try! OfflineODataProvider(serviceRoot: serviceRoot, parameters: offlineParameters, sapURLSession: sapURLSession, delegate: delegate)
@@ -56,7 +56,7 @@ public class OfflineODataController {
         try configureDefiningQueries(on: offlineODataProvider)
         self.apiproductsrvEntities = APIPRODUCTSRVEntities(provider: offlineODataProvider)
     }
-
+    
     public func openOfflineStore(synchronize: Bool, completionHandler: @escaping (Error?) -> Void) {
         if !self.isOfflineStoreOpened {
             // The OfflineODataProvider needs to be opened before performing any operations.
@@ -82,7 +82,7 @@ public class OfflineODataController {
             completionHandler(nil)
         }
     }
-
+    
     public func closeOfflineStore() {
         if self.isOfflineStoreOpened {
             do {
@@ -95,7 +95,7 @@ public class OfflineODataController {
         }
         self.logger.info("Offline Store closed.")
     }
-
+    
     // You can read more about data synchnonization: https://help.sap.com/viewer/fc1a59c210d848babfb3f758a6f55cb1/Latest/en-US/59ae11dc4df345bc8073f9da45170706.html
     public func synchronize(completionHandler: @escaping (Error?) -> Void) {
         if !self.isOfflineStoreOpened {
@@ -113,9 +113,9 @@ public class OfflineODataController {
             }
         }
     }
-
+    
     // MARK: - Private methods
-
+    
     // Read more about Defining Queries: https://help.sap.com/viewer/fc1a59c210d848babfb3f758a6f55cb1/Latest/en-US/2235da24931b4be69ad0ada82873044e.html
     private func configureDefiningQueries(on offlineODataProvider: OfflineODataProvider) throws {
         let descriptionQuery = DataQuery().from(APIPRODUCTSRVEntitiesMetadata.EntitySets.aProductDescription).selectAll()
@@ -124,21 +124,21 @@ public class OfflineODataController {
         
         do {
             try offlineODataProvider.add(
-                    definingQuery: OfflineODataDefiningQuery(
+                definingQuery: OfflineODataDefiningQuery(
                     name: "ProductQuery",
                     query: DataQuery()
-                                .from(APIPRODUCTSRVEntitiesMetadata.EntitySets.aProduct)
-                                .expand(AProductType.toDescription, withQuery: descriptionQuery)
-                                .expand(AProductType.toPlant, withQuery: plantQuery)
-                                .expand(AProductType.toSalesDelivery, withQuery: salesQuery),
+                        .from(APIPRODUCTSRVEntitiesMetadata.EntitySets.aProduct)
+                        .expand(AProductType.toDescription, withQuery: descriptionQuery)
+                        .expand(AProductType.toPlant, withQuery: plantQuery)
+                        .expand(AProductType.toSalesDelivery, withQuery: salesQuery),
                     automaticallyRetrievesStreams: false))
-             
+            
         } catch {
             self.logger.error("Failed to add defining query for Offline Store initialization", error: error)
             throw error
         }
     }
-
+    
     private func downloadOfflineStore(completionHandler: @escaping (Error?) -> Void) {
         // the download function updates the client’s offline store from the backend.
         self.apiproductsrvEntities.download { error in
@@ -150,7 +150,7 @@ public class OfflineODataController {
             completionHandler(error)
         }
     }
-
+    
     private func uploadOfflineStore(completionHandler: @escaping (Error?) -> Void) {
         // the upload function updates the backend from the client’s offline store.
         self.apiproductsrvEntities.upload { error in
@@ -165,57 +165,26 @@ public class OfflineODataController {
     }
 }
 
-class OfflineODataDelegateSample: OfflineODataDelegate {
+class OfflineODataDelegateSample: OfflineODataProviderDelegate {
     private let logger = Logger.shared(named: "AppDelegateLogger")
-
-    public func offlineODataProvider(_: OfflineODataProvider, didUpdateDownloadProgress progress: OfflineODataProgress) {
-        self.logger.info("downloadProgress: \(progress.bytesSent)  \(progress.bytesReceived)")
+    
+    func offlineODataProvider(_: OfflineODataProvider, didUpdateOpenProgress progress: OfflineODataProviderOperationProgress) {
+        self.logger.info("openProgress: \(progress.defaultMessage)")
     }
-
-    public func offlineODataProvider(_: OfflineODataProvider, didUpdateFileDownloadProgress progress: OfflineODataFileDownloadProgress) {
-        self.logger.info("downloadProgress: \(progress.bytesReceived)  \(progress.fileSize)")
+    
+    func offlineODataProvider(_: OfflineODataProvider, didUpdateDownloadProgress progress: OfflineODataProviderDownloadProgress) {
+        self.logger.info("downloadProgress: \(progress.defaultMessage)")
     }
-
-    public func offlineODataProvider(_: OfflineODataProvider, didUpdateUploadProgress progress: OfflineODataProgress) {
-        self.logger.info("downloadProgress: \(progress.bytesSent)  \(progress.bytesReceived)")
+    
+    func offlineODataProvider(_: OfflineODataProvider, didUpdateUploadProgress progress: OfflineODataProviderOperationProgress) {
+        self.logger.info("uploadProgress: \(progress.defaultMessage)")
     }
-
-    public func offlineODataProvider(_: OfflineODataProvider, requestDidFail request: OfflineODataFailedRequest) {
+    
+    func offlineODataProvider(_: OfflineODataProvider, requestDidFail request: OfflineODataFailedRequest) {
         self.logger.info("requestFailed: \(request.httpStatusCode)")
     }
-
-    // The OfflineODataStoreState is a Swift OptionSet. Use the set operation to retrieve each setting.
-    private func storeState2String(_ state: OfflineODataStoreState) -> String {
-        var result = ""
-        if state.contains(.opening) {
-            result += ":opening"
-        }
-        if state.contains(.open) {
-            result += ":open"
-        }
-        if state.contains(.closed) {
-            result += ":closed"
-        }
-        if state.contains(.downloading) {
-            result += ":downloading"
-        }
-        if state.contains(.uploading) {
-            result += ":uploading"
-        }
-        if state.contains(.initializing) {
-            result += ":initializing"
-        }
-        if state.contains(.fileDownloading) {
-            result += ":fileDownloading"
-        }
-        if state.contains(.initialCommunication) {
-            result += ":initialCommunication"
-        }
-        return result
-    }
-
-    public func offlineODataProvider(_: OfflineODataProvider, stateDidChange newState: OfflineODataStoreState) {
-        let stateString = storeState2String(newState)
-        self.logger.info("stateChanged: \(stateString)")
+    
+    func offlineODataProvider(_: OfflineODataProvider, didUpdateSendStoreProgress progress: OfflineODataProviderOperationProgress) {
+        self.logger.info("sendStoreProgress: \(progress.defaultMessage)")
     }
 }

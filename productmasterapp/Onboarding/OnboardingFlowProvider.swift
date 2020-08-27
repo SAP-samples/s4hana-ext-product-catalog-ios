@@ -30,6 +30,7 @@ public class OnboardingFlowProvider: OnboardingFlowProviding {
             completionHandler(self.restoringFlow(for: onboardingID), nil)
         case let .reset(onboardingID):
             completionHandler(self.resettingFlow(for: onboardingID), nil)
+        @unknown default: FUIToastMessage.show(message: "Could not Onboard")
         }
     }
 

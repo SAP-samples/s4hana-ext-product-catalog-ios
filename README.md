@@ -17,7 +17,8 @@ SAP Extensibility Explorer is a central place where anyone involved in the exten
 Requirements
 -------------
 - An account in SAP Cloud Platform with a subaccount in the Neo environment and Mobile Services enabled.
-- A Mac Device with **Xcode 11.2.1 (11B500)** and **SAP Cloud Platform SDK for iOS (XCode 11.2.1) 4.0.7**.
+- A Mac Device with **Xcode 11.6 (11E708)** and **SAP Cloud Platform SDK for iOS (XCode 11.5) 5.1.0**.
+- Tested and runned with **iOS 13.6**
 
 
 Download and Installation
@@ -33,5 +34,5 @@ If you have issues with this sample, please open a report using [GitHub issues](
 
 License
 -------
-Copyright © 2019 SAP SE or an SAP affiliate company. All rights reserved.
-This file is licensed under the SAP Sample Code License except as noted otherwise in the [LICENSE file](LICENSE).
+Copyright © 2020 SAP SE or an SAP affiliate company. All rights reserved.
+This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
