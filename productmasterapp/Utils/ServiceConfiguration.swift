@@ -3,7 +3,7 @@ import SAPFioriFlows
 import SAPOfflineOData
 
 /**
- *  Helper, which enables to access SAP Cloud Platform related ressources
+ *  Helper, which enables to access SAP Business Technology Platform (BTP) related ressources
  */
 class ServiceConfiguration {
     

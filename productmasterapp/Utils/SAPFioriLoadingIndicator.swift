@@ -2,7 +2,7 @@
 // SAPFioriLoadingIndicator.swift
 // productmasterapp
 //
-// Created by SAP Cloud Platform SDK for iOS Assistant application on 05/02/18
+// Created by SAP Business Technology Platform (BTP) SDK for iOS Assistant application on 05/02/18
 //
 
 import Foundation
