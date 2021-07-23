@@ -1,7 +1,7 @@
 //
 // productmasterapp
 //
-// Created by SAP Cloud Platform SDK for iOS Assistant application on 05/09/19
+// Created by SAP Business Technology Platform (BTP) SDK for iOS Assistant application on 05/09/19
 //
 
 import Foundation
