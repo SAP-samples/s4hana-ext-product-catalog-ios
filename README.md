@@ -1,3 +1,10 @@
+## Deprecation Notice
+
+This public repository is read-only and no longer maintained.
+
+![](https://img.shields.io/badge/STATUS-NOT%20CURRENTLY%20MAINTAINED-red.svg?longCache=true&style=flat)
+
+---
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/s4hana-ext-product-catalog-ios)](https://api.reuse.software/info/github.com/SAP-samples/s4hana-ext-product-catalog-ios)
 # SAP S/4HANA Cloud Extensions – Display SAP S/4HANA Cloud Products on an iOS Device
 This repository contains the sample code for the [Display SAP S/4HANA Cloud Products on an iOS Device tutorial](http://tiny.cc/s4-product-catalog-ios).  
